@@ -64,4 +64,10 @@ extension UIColor {
         ? .yaBlackDark
         : .yaBlackLight
     }
+    
+    //MARK: backgroundColors
+    static var ypBlack: UIColor { UIColor(named: "ypBlack") ?? .black}
+    static var ypGray: UIColor { UIColor(named: "ypGray") ?? .gray}
+    static var ypLightGray: UIColor { UIColor(named: "ypLightGray") ?? .lightGray}
+    static var ypWhite: UIColor { UIColor(named: "ypWhite") ?? .white}
 }
