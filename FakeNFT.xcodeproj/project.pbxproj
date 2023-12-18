@@ -51,6 +51,7 @@
 		D9B072002B2E1650008A65EE /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = D9B072022B2E1650008A65EE /* Localizable.strings */; };
 		D9B072072B3026DD008A65EE /* SummaryInfoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9B072062B3026DD008A65EE /* SummaryInfoModel.swift */; };
 		D9B072092B3028A1008A65EE /* SummaryInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9B072082B3028A1008A65EE /* SummaryInfoView.swift */; };
+		D9B0720C2B305BE6008A65EE /* Декомпозиция_Манапов.md in Resources */ = {isa = PBXBuildFile; fileRef = D9B0720B2B305BE6008A65EE /* Декомпозиция_Манапов.md */; };
 		E19CD5AB2A98B56600CA39A5 /* NftImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19CD5AA2A98B56600CA39A5 /* NftImageCollectionViewCell.swift */; };
 		E1A1B9DA2AA01CE400C3AFBC /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1A1B9D92AA01CE400C3AFBC /* TabBarController.swift */; };
 /* End PBXBuildFile section */
@@ -120,6 +121,7 @@
 		D9B072032B2E1651008A65EE /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		D9B072062B3026DD008A65EE /* SummaryInfoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryInfoModel.swift; sourceTree = "<group>"; };
 		D9B072082B3028A1008A65EE /* SummaryInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryInfoView.swift; sourceTree = "<group>"; };
+		D9B0720B2B305BE6008A65EE /* Декомпозиция_Манапов.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = "Декомпозиция_Манапов.md"; sourceTree = "<group>"; };
 		E19CD5AA2A98B56600CA39A5 /* NftImageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NftImageCollectionViewCell.swift; sourceTree = "<group>"; };
 		E1A1B9D92AA01CE400C3AFBC /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		E1CD40D82A96BE7D00BE7FE8 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Main.strings; sourceTree = "<group>"; };
@@ -239,6 +241,7 @@
 		3F68069529CBBAF100B4F915 /* FakeNFT */ = {
 			isa = PBXGroup;
 			children = (
+				D9B0720A2B305BAB008A65EE /* Documents */,
 				D9B071FB2B2E0FDB008A65EE /* Extentions */,
 				3F68069629CBBAF100B4F915 /* AppDelegate.swift */,
 				3F68069829CBBAF100B4F915 /* SceneDelegate.swift */,
@@ -369,6 +372,14 @@
 				D9B071FC2B2E0FFF008A65EE /* UIImage+ext.swift */,
 			);
 			path = Extentions;
+			sourceTree = "<group>";
+		};
+		D9B0720A2B305BAB008A65EE /* Documents */ = {
+			isa = PBXGroup;
+			children = (
+				D9B0720B2B305BE6008A65EE /* Декомпозиция_Манапов.md */,
+			);
+			path = Documents;
 			sourceTree = "<group>";
 		};
 		E19CD5A92A98B55900CA39A5 /* Cell */ = {
@@ -517,6 +528,7 @@
 				D9B072002B2E1650008A65EE /* Localizable.strings in Resources */,
 				3F6806A029CBBAF200B4F915 /* Assets.xcassets in Resources */,
 				3F68069E29CBBAF100B4F915 /* Main.storyboard in Resources */,
+				D9B0720C2B305BE6008A65EE /* Декомпозиция_Манапов.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
