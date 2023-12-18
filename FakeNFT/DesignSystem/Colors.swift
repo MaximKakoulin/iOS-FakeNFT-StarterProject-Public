@@ -66,8 +66,9 @@ extension UIColor {
     }
     
     //MARK: backgroundColors
-    static var ypBlack: UIColor { UIColor(named: "ypBlack") ?? .black}
-    static var ypGray: UIColor { UIColor(named: "ypGray") ?? .gray}
-    static var ypLightGray: UIColor { UIColor(named: "ypLightGray") ?? .lightGray}
-    static var ypWhite: UIColor { UIColor(named: "ypWhite") ?? .white}
+    static let ypBlack = UIColor(named: "ypBlack")
+    static let ypGray = UIColor(named: "ypGray")
+    static let ypLightGray = UIColor(named: "ypLightGray")
+    static let ypWhite = UIColor(named: "ypWhite")
+    static let ypGreen = UIColor(named: "ypGreen")
 }

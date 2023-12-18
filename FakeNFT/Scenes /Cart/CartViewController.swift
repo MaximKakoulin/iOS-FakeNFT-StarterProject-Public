@@ -9,16 +9,31 @@ import UIKit
 
 final class CartViewController: UIViewController {
     
-    private var presenter: CartPresenterProtocol?
+    init(presenter: CartPresenterProtocol = CartPresenter()) {
+        self.presenter = presenter
+        super.init(nibName: nil, bundle: nil)
+    }
     
-    private lazy var NftTableView: UITableView = {
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    private var presenter: CartPresenterProtocol
+    
+    private lazy var nftTableView: UITableView = {
         let element = UITableView()
-        element.separatorStyle = .singleLine
-        element.layer.cornerRadius = 16
-        element.isScrollEnabled = false
+        element.separatorStyle = .none
+        element.backgroundColor = .clear
+        element.allowsSelection = false
         element.register(CartViewControllerCell.self, forCellReuseIdentifier: "CartCell")
         element.translatesAutoresizingMaskIntoConstraints = false
         return element
+    }()
+    
+    private lazy var summaryInfoView: SummaryInfoView = {
+        let view = SummaryInfoView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
     }()
     
     
@@ -33,12 +48,39 @@ final class CartViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        nftTableView.delegate = self
+        nftTableView.dataSource = self
+        setNavBar()
         addViews()
+        addConstraints()
+        
+    }
+    
+    private func setNavBar() {
+        navigationItem.rightBarButtonItem = sortButton
+        navigationController?.navigationBar.tintColor = .ypBlack
+        navigationController?.navigationBar.backgroundColor = .ypWhite
+        navigationController?.navigationBar.prefersLargeTitles = false
     }
     
     
     private func addViews() {
         view.backgroundColor = .ypWhite
+        view.addSubview(nftTableView)
+        view.addSubview(summaryInfoView)
+    }
+    
+    private func addConstraints() {
+        NSLayoutConstraint.activate([
+            summaryInfoView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            summaryInfoView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+            summaryInfoView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            
+            nftTableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            nftTableView.bottomAnchor.constraint(equalTo: summaryInfoView.topAnchor),
+            nftTableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            nftTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
+        ])
     }
         
     
@@ -46,19 +88,19 @@ final class CartViewController: UIViewController {
     @objc
     private func didTapsortButton() { }
     
+    
 }
 
 extension CartViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        presenter?.nftArray.count ?? 1
+        presenter.nftArray.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "CartCell", for: indexPath) as? CartViewControllerCell else { return UITableViewCell() }
         
-        if let model = presenter?.nftArray[indexPath.row]{
-            cell.configureCell(with: model)
-        }
+        let model = presenter.nftArray[indexPath.row]
+        cell.configureCell(with: model)
         cell.delegate = self
         
         return cell
