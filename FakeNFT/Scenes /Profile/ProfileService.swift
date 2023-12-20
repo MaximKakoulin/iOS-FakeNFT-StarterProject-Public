@@ -28,7 +28,7 @@ struct UserProfileRequest: NetworkRequest {
     let userId: String
 
     var endpoint: URL? {
-        return URL(string: "https://657f05a89d10ccb465d5cbee.mockapi.io/api/v1/profile/\(userId)")
+        return URL(string: "https://64858e8ba795d24810b71189.mockapi.io/api/v1/profile1/\(userId)")
     }
 
     var httpMethod: HttpMethod {
@@ -36,4 +36,4 @@ struct UserProfileRequest: NetworkRequest {
     }
 }
 
-
+// TODO - вот эту ссыль https://64858e8ba795d24810b71189.mockapi.io/api/v1/profile1 вставить взамен текущей(2 этап) 

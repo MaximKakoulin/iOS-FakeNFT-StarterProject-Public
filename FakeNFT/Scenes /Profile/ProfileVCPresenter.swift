@@ -15,7 +15,7 @@ protocol ProfilePresenterProtocol: AnyObject {
     func didTapAboutDeveloper()
 }
 
-class ProfilePresenter: ProfilePresenterProtocol {
+final class ProfilePresenter: ProfilePresenterProtocol {
 
     weak var view: ProfileViewProtocol?
 

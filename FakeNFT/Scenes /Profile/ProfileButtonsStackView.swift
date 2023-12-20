@@ -29,8 +29,8 @@ final class ProfileButtonsStackView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
 
-    //MARK: - Private Methods
-    ///Временный метод для начальной настройки Вью
+    // MARK: - Private Methods
+    /// Временный метод для начальной настройки Вью
     private func setupButtons() {
         userNFTButton.setText("Мои NFT (0)")
         userFavoritesNFTButton.setText("Избранные NFT (0)")

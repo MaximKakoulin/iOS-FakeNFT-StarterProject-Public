@@ -15,35 +15,33 @@ class TabBarController: UITabBarController {
         super.init(coder: coder)
     }
 
-
     override func viewDidLoad() {
         super.viewDidLoad()
         let profileNavigationController = UINavigationController(rootViewController: appConfiguration.profileViewController)
         profileNavigationController.tabBarItem = UITabBarItem(
-            title: S.TabBarController.profileTabBarTitle,
+            title: Strings.TabBarController.profileTabBarTitle,
             image: UIImage(systemName: "person.crop.circle.fill"),
             selectedImage: nil
         )
 
         appConfiguration.catalogViewController.tabBarItem = UITabBarItem(
-            title: S.TabBarController.catalogTabBarTitle,
+            title: Strings.TabBarController.catalogTabBarTitle,
             image: UIImage(systemName: "rectangle.stack.fill"),
             selectedImage: nil
         )
 
         appConfiguration.cartViewController.tabBarItem = UITabBarItem(
-            title: S.TabBarController.cartTabBarTitle,
+            title: Strings.TabBarController.cartTabBarTitle,
             image: UIImage(systemName: "bag.fill"),
             selectedImage: nil
         )
         appConfiguration.statisticViewController.tabBarItem = UITabBarItem(
-            title: S.TabBarController.statisticTabBarTitle,
+            title: Strings.TabBarController.statisticTabBarTitle,
             image: UIImage(systemName: "flag.2.crossed.fill"),
             selectedImage: nil
         )
 
         self.viewControllers = [
-            //appConfiguration.profileViewController,
             profileNavigationController,
             appConfiguration.catalogViewController,
             appConfiguration.cartViewController,

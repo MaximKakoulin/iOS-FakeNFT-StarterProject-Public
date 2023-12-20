@@ -18,7 +18,7 @@ protocol ProfileViewProtocol: AnyObject {
 
 final class ProfileViewController: UIViewController {
 
-    //MARK: - Private Properties
+    // MARK: - Private Properties
     private var presenter: ProfilePresenterProtocol?
     private var userProfileStackView: UserProfileStackView!
     private var profileButtonsStackView: ProfileButtonsStackView!
@@ -46,7 +46,10 @@ final class ProfileViewController: UIViewController {
     private func setupNavigationBar() {
         let configuration = UIImage.SymbolConfiguration(pointSize: 20, weight: .bold)
         let image = UIImage(systemName: "square.and.pencil", withConfiguration: configuration)
-        let barButtonItem = UIBarButtonItem(image: image, style: .plain, target: self, action: #selector(rightButtonTapped))
+        let barButtonItem = UIBarButtonItem(image: image,
+                                            style: .plain,
+                                            target: self,
+                                            action: #selector(rightButtonTapped))
         barButtonItem.tintColor = .blackDayNight
         navigationItem.rightBarButtonItem = barButtonItem
     }
@@ -80,7 +83,7 @@ final class ProfileViewController: UIViewController {
 
 }
 
-//MARK: -ProfileViewProtocol
+// MARK: - ProfileViewProtocol
 extension ProfileViewController: ProfileViewProtocol {
     func updateUI(with profile: UserProfile) {
         userProfileStackView.update(with: profile)

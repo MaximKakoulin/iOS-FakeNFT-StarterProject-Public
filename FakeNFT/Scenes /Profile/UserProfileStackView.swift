@@ -10,11 +10,10 @@ import Kingfisher
 
 final class UserProfileStackView: UIView {
 
-    //MARK: - Computered Properties
+    // MARK: - Computered Properties
 
     let avatarImage: UIImageView = {
        let imageView = UIImageView()
-//        imageView.layer.cornerRadius = 30
         imageView.clipsToBounds = true
         imageView.contentMode = .scaleAspectFit
         imageView.image = UIImage(named: "Profile_placeholder")
@@ -51,7 +50,7 @@ final class UserProfileStackView: UIView {
         return label
     }()
 
-    //MARK: - Initiliazers
+    // MARK: - Initiliazers
     override init(frame: CGRect) {
         super.init(frame: frame)
 
@@ -63,7 +62,7 @@ final class UserProfileStackView: UIView {
     }
 
     private func setupStackView() {
-        //Задаю стэк "Ава + Имя"
+        // Задаю стэк "Ава + Имя"
         let horizontalStack = UIStackView(arrangedSubviews: [avatarImage, nameLabel])
         horizontalStack.axis = .horizontal
         horizontalStack.distribution = .fill
@@ -74,7 +73,6 @@ final class UserProfileStackView: UIView {
         verticalStack.distribution = .fill
         verticalStack.spacing = 10
         verticalStack.alignment = .top
-
 
         addSubview(verticalStack)
         verticalStack.translatesAutoresizingMaskIntoConstraints = false

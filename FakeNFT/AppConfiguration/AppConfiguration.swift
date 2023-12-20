@@ -14,7 +14,7 @@ class AppConfiguration {
     let statisticViewController: UIViewController
 
     init() {
-        //MARK: - Эпик Профиля
+        // MARK: - Эпик Профиля
         let networkClient = DefaultNetworkClient()
         let profileService = ProfileService(networkClient: networkClient)
         let profilePresenter = ProfilePresenter(view: nil, profileService: profileService) // Временно установим view в nil

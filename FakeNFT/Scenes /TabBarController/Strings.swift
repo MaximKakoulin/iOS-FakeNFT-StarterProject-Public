@@ -5,7 +5,7 @@
 //  Created by Максим on 17.12.2023.
 //
 
-struct S {
+struct Strings {
     struct TabBarController {
         static let profileTabBarTitle = "Профиль"
         static let catalogTabBarTitle = "Каталог"
