@@ -32,7 +32,7 @@ final class UserProfileStackView: UIView {
     let userInfoText: UILabel = {
         let userInfo = UILabel()
         userInfo.font = UIFont.systemFont(ofSize: 13, weight: .regular)
-        userInfo.text = "Это информация о пользователе. Здесь может быть его биография, интересы или другая полезная информация."
+        userInfo.text = "Это информация о пользователе. Здесь может быть его биография."
         userInfo.textAlignment = .left
         userInfo.numberOfLines = 0
         userInfo.translatesAutoresizingMaskIntoConstraints = false

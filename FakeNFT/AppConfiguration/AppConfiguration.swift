@@ -17,7 +17,7 @@ class AppConfiguration {
         // MARK: - Эпик Профиля
         let networkClient = DefaultNetworkClient()
         let profileService = ProfileService(networkClient: networkClient)
-        let profilePresenter = ProfilePresenter(view: nil, profileService: profileService) // Временно установим view в nil
+        let profilePresenter = ProfilePresenter(view: nil, profileService: profileService) // временные nil
         profileViewController = ProfileViewController(presenter: profilePresenter)
         profilePresenter.view = profileViewController as? ProfileViewProtocol // Теперь устанавливаем view
 

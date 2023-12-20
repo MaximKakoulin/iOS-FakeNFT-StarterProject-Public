@@ -67,6 +67,10 @@ extension ProfileButtonsStackView {
         let myNFTCount = profile.nfts.count
         let favouritesCount = profile.likes.count
 
-        setButtonText(button1Text: "Мои NFT", button2Text: "Избранные NFT", button3Text: "О разработчике", counts: [myNFTCount, favouritesCount])
+        setButtonText(button1Text: "Мои NFT",
+                      button2Text: "Избранные NFT",
+                      button3Text: "О разработчике",
+                      counts: [myNFTCount, favouritesCount]
+        )
     }
 }

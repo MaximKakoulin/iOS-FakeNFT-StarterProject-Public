@@ -50,7 +50,9 @@ final class ProfileButton: UIButton {
 
     override func layoutSubviews() {
         super.layoutSubviews()
-        imageEdgeInsets = UIEdgeInsets(top: 0, left: bounds.width - 16 - (imageView?.bounds.width ?? 0), bottom: 0, right: 16)
+        imageEdgeInsets = UIEdgeInsets(top: 0,
+                                       left: bounds.width - 16 - (imageView?.bounds.width ?? 0),
+                                       bottom: 0, right: 16)
     }
 
 }

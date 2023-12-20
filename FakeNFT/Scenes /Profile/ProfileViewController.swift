@@ -49,7 +49,9 @@ final class ProfileViewController: UIViewController {
         let barButtonItem = UIBarButtonItem(image: image,
                                             style: .plain,
                                             target: self,
-                                            action: #selector(rightButtonTapped))
+                                            action: #selector(rightButtonTapped)
+        )
+        
         barButtonItem.tintColor = .blackDayNight
         navigationItem.rightBarButtonItem = barButtonItem
     }
@@ -72,9 +74,9 @@ final class ProfileViewController: UIViewController {
             profileButtonsStackView.topAnchor.constraint(equalTo: userProfileStackView.bottomAnchor, constant: 40),
             profileButtonsStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             profileButtonsStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            profileButtonsStackView.bottomAnchor.constraint(lessThanOrEqualTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -20)
+            profileButtonsStackView.bottomAnchor.constraint(
+                lessThanOrEqualTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -20)
         ])
-
     }
 
     @objc func rightButtonTapped() {

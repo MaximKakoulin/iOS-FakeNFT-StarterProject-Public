@@ -17,7 +17,8 @@ class TabBarController: UITabBarController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        let profileNavigationController = UINavigationController(rootViewController: appConfiguration.profileViewController)
+        let profileNavigationController = UINavigationController(
+            rootViewController: appConfiguration.profileViewController)
         profileNavigationController.tabBarItem = UITabBarItem(
             title: Strings.TabBarController.profileTabBarTitle,
             image: UIImage(systemName: "person.crop.circle.fill"),
