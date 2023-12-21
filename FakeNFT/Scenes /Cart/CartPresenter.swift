@@ -26,7 +26,7 @@ final class CartPresenter: CartPresenterProtocol {
                      "https://code.s3.yandex.net/Mobile/iOS/NFT/Beige/April/3.png"],
             rating: 4,
             description: "A 3D model of a mythical creature.",
-            price: 4.5,
+            price: 4.4,
             author: "6",
             id: "1"),
         

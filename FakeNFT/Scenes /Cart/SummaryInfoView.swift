@@ -9,7 +9,7 @@ import UIKit
 
 
 final class SummaryInfoView: UIView {
-    private var countNftLabel: UILabel = {
+    private let countNftLabel: UILabel = {
         let count = UILabel()
         count.translatesAutoresizingMaskIntoConstraints = false
         count.font = .caption15
@@ -18,7 +18,7 @@ final class SummaryInfoView: UIView {
         return count
     }()
     
-    private var priceLabel: UILabel = {
+    private let priceLabel: UILabel = {
         let price = UILabel()
         price.translatesAutoresizingMaskIntoConstraints = false
         price.font = .bodyBold17
@@ -27,7 +27,7 @@ final class SummaryInfoView: UIView {
         return price
     }()
     
-    private var labelStack: UIStackView = {
+    private let labelStack: UIStackView = {
         let element = UIStackView()
         element.translatesAutoresizingMaskIntoConstraints = false
         element.axis = .vertical
@@ -35,7 +35,7 @@ final class SummaryInfoView: UIView {
         return element
     }()
     
-    private var toPayButton: UIButton = {
+    private let toPayButton: UIButton = {
         let button = UIButton()
         button.layer.masksToBounds = true
         button.layer.cornerRadius = 16
@@ -64,10 +64,15 @@ final class SummaryInfoView: UIView {
     }
     
     
+    // MARK: - Public Methods
+    
     func configureSummary(with summaryInfo: SummaryInfo) {
         countNftLabel.text = "\(summaryInfo.countNFT) NFT"
         priceLabel.text = "\(summaryInfo.price) ETH"
     }
+    
+    
+    // MARK: - Private Methods
     
     private func addViews() {
         addSubview(toPayButton)
@@ -84,7 +89,6 @@ final class SummaryInfoView: UIView {
         NSLayoutConstraint.activate([
             labelStack.topAnchor.constraint(equalTo: topAnchor, constant: 16),
             labelStack.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
-//            labelStack.trailingAnchor.constraint(equalTo: toPayButton.leadingAnchor, constant: 24),
             labelStack.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -16),
             
             toPayButton.topAnchor.constraint(equalTo: topAnchor, constant: 16),

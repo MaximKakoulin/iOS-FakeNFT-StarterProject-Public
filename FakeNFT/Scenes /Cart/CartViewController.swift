@@ -9,16 +9,9 @@ import UIKit
 
 final class CartViewController: UIViewController {
     
-    init(presenter: CartPresenterProtocol = CartPresenter()) {
-        self.presenter = presenter
-        super.init(nibName: nil, bundle: nil)
-    }
+    // MARK: - Private Properties
     
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    private var presenter: CartPresenterProtocol
+    private let presenter: CartPresenterProtocol
     
     private lazy var nftTableView: UITableView = {
         let element = UITableView()
@@ -36,7 +29,6 @@ final class CartViewController: UIViewController {
         return view
     }()
     
-    
     private lazy var sortButton = UIBarButtonItem(
         image: UIImage.Icons.sort,
         style: .plain,
@@ -45,7 +37,20 @@ final class CartViewController: UIViewController {
     )
     
     
+    // MARK: - Initializers
+
+    init(presenter: CartPresenterProtocol = CartPresenter()) {
+        self.presenter = presenter
+        super.init(nibName: nil, bundle: nil)
+    }
     
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    
+    // MARK: - View Life Cycles
+
     override func viewDidLoad() {
         super.viewDidLoad()
         nftTableView.delegate = self
@@ -55,6 +60,9 @@ final class CartViewController: UIViewController {
         addConstraints()
         
     }
+    
+    
+    // MARK: - Private Methods
     
     private func setNavBar() {
         navigationItem.rightBarButtonItem = sortButton
@@ -91,6 +99,8 @@ final class CartViewController: UIViewController {
     
 }
 
+
+// MARK: - UITableViewDataSource
 extension CartViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         presenter.nftArray.count

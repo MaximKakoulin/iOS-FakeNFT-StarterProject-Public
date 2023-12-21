@@ -13,7 +13,14 @@ protocol CartNFTCellDelegate: AnyObject {
 }
 
 final class CartViewControllerCell: UITableViewCell {
-    // MARK: - Properties
+    
+    //MARK: - Properties
+    
+    weak var delegate: CartNFTCellDelegate?
+    private var model: NFTModel?
+    
+    
+    // MARK: - private Properties
     
     private let imageCellView: UIImageView = {
        let image = UIImageView()
@@ -24,7 +31,7 @@ final class CartViewControllerCell: UITableViewCell {
         return image
     }()
     
-    private var ratingImageView: UIImageView = {
+    private let ratingImageView: UIImageView = {
        let image = UIImageView()
         image.translatesAutoresizingMaskIntoConstraints = false
         return image
@@ -47,7 +54,7 @@ final class CartViewControllerCell: UITableViewCell {
         return title
     }()
     
-    lazy var price: UILabel = {
+    private lazy var price: UILabel = {
        let title = UILabel()
         title.translatesAutoresizingMaskIntoConstraints = false
         title.font = .bodyBold17
@@ -62,12 +69,6 @@ final class CartViewControllerCell: UITableViewCell {
         button.addTarget(self, action: #selector(didTapRemoveButton), for: .touchUpInside)
         return button
     }()
-    
-    
-    //MARK: - Properties
-    
-    weak var delegate: CartNFTCellDelegate?
-    private var model: NFTModel?
     
     
     //MARK: - Lifecycle
@@ -91,7 +92,7 @@ final class CartViewControllerCell: UITableViewCell {
     }
     
     
-    //MARK: - Methods
+    // MARK: - Public Methods
     
     func configureCell(with model: NFTModel) {
         self.model = model
@@ -115,18 +116,15 @@ final class CartViewControllerCell: UITableViewCell {
     }
     
     
+    
+    // MARK: - Private Methods
+    
     private func setView() {
-//        [imageCellView, titleLabel, ratingImageView, priceTitle, price, deleteButton]
-//            .forEach {
-//                contentView.addSubview($0)
-//            }
-        contentView.addSubview(imageCellView)
-        addSubview(titleLabel)
-        contentView.addSubview(ratingImageView)
-        contentView.addSubview(priceTitle)
-        contentView.addSubview(price)
-        contentView.addSubview(deleteButton)
-        
+        [imageCellView, titleLabel, ratingImageView, priceTitle, price, deleteButton]
+            .forEach {
+                contentView.addSubview($0)
+            }
+
         addConstraints()
     }
     
@@ -152,8 +150,6 @@ final class CartViewControllerCell: UITableViewCell {
             price.bottomAnchor.constraint(equalTo: imageCellView.bottomAnchor, constant: -8),
             
             deleteButton.centerYAnchor.constraint(equalTo: imageCellView.centerYAnchor),
-//            deleteButton.topAnchor.constraint(equalTo: topAnchor, constant: 50),
-//            deleteButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 50),
             deleteButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16)
         ])
     }
