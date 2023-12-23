@@ -130,10 +130,24 @@ extension CartViewController: CartNFTCellDelegate {
     func didTapDeleteButton(on nft: NFTModel) {
         let deleteFromCartVC = DeleteFromCartViewController()
         deleteFromCartVC.nftForDelete = nft
-//        deleteFromCartVC.delegate = self
+        deleteFromCartVC.delegate = self
         deleteFromCartVC.modalPresentationStyle = .overFullScreen
         deleteFromCartVC.modalTransitionStyle = .crossDissolve
         present(deleteFromCartVC, animated: true)
+    }
+}
+
+// MARK: - DeleteFromCartViewControllerDelegate
+
+extension CartViewController: DeleteFromCartViewControllerDelegate {
+    func didTapReturnButton() {
+        dismiss(animated: true)
+    }
+    
+    func didTapDeleteButton(_ model: NFTModel) {
+//        presenter.deleteNFT(model) { [weak self] in
+//            self?.dismiss(animated: true)
+//        }
     }
 }
 

@@ -71,4 +71,5 @@ extension UIColor {
     static let ypLightGray = UIColor(named: "ypLightGray")
     static let ypWhite = UIColor(named: "ypWhite")
     static let ypGreen = UIColor(named: "ypGreen")
+    static let ypRed = UIColor(named: "ypRed")
 }
