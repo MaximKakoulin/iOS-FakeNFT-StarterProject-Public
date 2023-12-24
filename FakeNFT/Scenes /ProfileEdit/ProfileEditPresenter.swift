@@ -9,6 +9,7 @@ import Foundation
 import UIKit
 
 protocol ProfileEditPresenterProtocol: AnyObject {
+    func fetchUserProfile()
     func updateProfile(name: String?, description: String?, website: String?)
 }
 
@@ -48,4 +49,18 @@ final class ProfileEditPresenter: ProfileEditPresenterProtocol {
             }
         }
     }
+
+    func fetchUserProfile() {
+        profileService.fetchUserProfile { [weak self] result in
+            DispatchQueue.main.async {
+                switch result {
+                case .success(let profile):
+                    self?.view?.updateUI(with: profile)
+                case .failure(let error):
+                    self?.view?.displayError(error)
+                }
+            }
+        }
+    }
+
 }

@@ -10,6 +10,7 @@ import ProgressHUD
 import Kingfisher
 
 protocol ProfileEditViewProtocol: AnyObject {
+    func updateUI(with profile: UserProfile)
     func showLoadingState()
     func hideLoadingState()
     func displayError(_ error: Error)
@@ -97,6 +98,12 @@ final class ProfileEditViewController: UIViewController {
         NotificationCenter.default.removeObserver(self,
                                                   name: UIResponder.keyboardWillHideNotification,
                                                   object: nil)
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        // Запрашиваем актуальные данные о профиле
+        presenter?.fetchUserProfile()
     }
 
     override func viewDidLoad() {
@@ -264,6 +271,12 @@ extension ProfileEditViewController: ProfileEditUserPictureDelegate {
 }
 
 extension ProfileEditViewController: ProfileEditViewProtocol {
+    func updateUI(with profile: UserProfile) {
+        nameStackView.updateTextContent(profile.name)
+        descriptionStackView.updateTextContent(profile.description)
+        websiteStackView.updateTextContent(profile.website)
+    }
+
     func showLoadingState() {
         ProgressHUD.show()
     }
