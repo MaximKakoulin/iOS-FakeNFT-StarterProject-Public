@@ -17,9 +17,10 @@ class AppConfiguration {
         // MARK: - Эпик Профиля
         let networkClient = DefaultNetworkClient()
         let profileService = ProfileService(networkClient: networkClient)
-        let profilePresenter = ProfilePresenter(view: nil, profileService: profileService) // временные nil
+        let profilePresenter = ProfilePresenter(view: nil,
+                                                profileService: profileService)
         profileViewController = ProfileViewController(presenter: profilePresenter)
-        profilePresenter.view = profileViewController as? ProfileViewProtocol // Теперь устанавливаем view
+        profilePresenter.view = profileViewController as? ProfileViewProtocol // устанавливаем view
 
         catalogViewController = UIViewController()
         cartViewController = UIViewController()

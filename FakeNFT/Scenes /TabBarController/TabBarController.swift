@@ -10,8 +10,7 @@ class TabBarController: UITabBarController {
     }
 
     required init?(coder: NSCoder) {
-        // Установите значения по умолчанию или инициализируйте appConfiguration здесь
-        self.appConfiguration = AppConfiguration() // Пример, замените на реальную инициализацию
+        self.appConfiguration = AppConfiguration()
         super.init(coder: coder)
     }
 
@@ -20,24 +19,23 @@ class TabBarController: UITabBarController {
         let profileNavigationController = UINavigationController(
             rootViewController: appConfiguration.profileViewController)
         profileNavigationController.tabBarItem = UITabBarItem(
-            title: Strings.TabBarController.profileTabBarTitle,
+            title: TextLabels.TabBarController.profileTabBarTitle,
             image: UIImage(systemName: "person.crop.circle.fill"),
             selectedImage: nil
         )
 
         appConfiguration.catalogViewController.tabBarItem = UITabBarItem(
-            title: Strings.TabBarController.catalogTabBarTitle,
+            title: TextLabels.TabBarController.catalogTabBarTitle,
             image: UIImage(systemName: "rectangle.stack.fill"),
             selectedImage: nil
         )
-
         appConfiguration.cartViewController.tabBarItem = UITabBarItem(
-            title: Strings.TabBarController.cartTabBarTitle,
+            title: TextLabels.TabBarController.cartTabBarTitle,
             image: UIImage(systemName: "bag.fill"),
             selectedImage: nil
         )
         appConfiguration.statisticViewController.tabBarItem = UITabBarItem(
-            title: Strings.TabBarController.statisticTabBarTitle,
+            title: TextLabels.TabBarController.statisticTabBarTitle,
             image: UIImage(systemName: "flag.2.crossed.fill"),
             selectedImage: nil
         )
