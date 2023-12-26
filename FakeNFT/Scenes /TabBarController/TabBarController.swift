@@ -17,7 +17,7 @@ final class TabBarController: UITabBarController {
 //            servicesAssembly: servicesAssembly
 //        )
 //        catalogController.tabBarItem = catalogTabBarItem
-
+//        viewControllers = [catalogController]
         UITabBar.appearance().barTintColor = .systemBackground
         view.backgroundColor = .systemBackground
         setupTabBarItems()

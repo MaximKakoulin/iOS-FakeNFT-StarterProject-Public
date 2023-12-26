@@ -7,9 +7,13 @@
 
 import Foundation
 
+// MARK: - Protocol
+
 protocol CartPresenterProtocol: AnyObject {
     var nftArray: [NFTModel] { get }
 }
+
+
 final class CartPresenter: CartPresenterProtocol {
     var summaryInfo: SummaryInfo {
         let price = nftArray.reduce(0.0) { $0 + $1.price }
