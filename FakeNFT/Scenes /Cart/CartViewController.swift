@@ -50,7 +50,7 @@ final class CartViewController: UIViewController {
     
     
     // MARK: - View Life Cycles
-
+    //TODO: - Разобраться почему элементы не отображаются сразу
     override func viewDidLoad() {
         super.viewDidLoad()
         nftTableView.delegate = self
@@ -58,7 +58,8 @@ final class CartViewController: UIViewController {
         setNavBar()
         addViews()
         addConstraints()
-        
+        presenter.showNft()
+        nftTableView.reloadData()
     }
     
     

@@ -55,23 +55,25 @@ struct CartService: CartServiceProtocol {
     
 }
 
-
+//TODO: - Вынести в одлеьный файл 
 enum Constants {
     static let endpoint = URL(string:"https://d5dn3j2ouj72b0ejucbl.apigw.yandexcloud.net")!
 }
 
 struct GetOrderRequest: NetworkRequest {
     var endpoint: URL? {
-        Constants.endpoint.appendingPathComponent("/orders/1")
+        URL(string: "https://64c51731c853c26efada7bb6.mockapi.io/api/v1/orders/1")
+//        Constants.endpoint.appendingPathComponent("/api/v1/orders/1")
     }
     
     var httpMethod: HttpMethod { .get }
+    
 }
 
 
 struct PutOrderRequest: NetworkRequest {
     var endpoint: URL? {
-        Constants.endpoint.appendingPathComponent("/orders/1")
+        Constants.endpoint.appendingPathComponent("/api/v1/orders/1")
     }
     
     var httpMethod: HttpMethod { .put }

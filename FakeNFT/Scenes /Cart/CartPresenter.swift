@@ -11,39 +11,92 @@ import Foundation
 
 protocol CartPresenterProtocol: AnyObject {
     var nftArray: [NFTModel] { get }
+    var isLoad: Bool { get }
+    var summaryInfo: SummaryInfo { get }
+    var orders: [String] { get }
+    func showNft()
 }
 
 
 final class CartPresenter: CartPresenterProtocol {
+    //MARK: - Propertirs
+    var nftArray: [NFTModel] = []
+    var orders: [String] = [] {
+        didSet {
+            self.nftArray = []
+            getNFtOrder()
+        }
+    }
+    var isLoad: Bool = true
     var summaryInfo: SummaryInfo {
         let price = nftArray.reduce(0.0) { $0 + $1.price }
         return SummaryInfo(countNFT: nftArray.count, price: price)
     }
     
-    //mok data for test
-    var nftArray: [NFTModel] = [
-        NFTModel(
-            createdAt: "2023-04-20T02:22:27Z",
-            name: "April",
-            images: ["https://code.s3.yandex.net/Mobile/iOS/NFT/Beige/April/1.png",
-                     "https://code.s3.yandex.net/Mobile/iOS/NFT/Beige/April/2.png",
-                     "https://code.s3.yandex.net/Mobile/iOS/NFT/Beige/April/3.png"],
-            rating: 4,
-            description: "A 3D model of a mythical creature.",
-            price: 4.4,
-            author: "6",
-            id: "1"),
-        
-        NFTModel(
-            createdAt: "2023-04-20T02:22:27Z",
-            name: "April",
-            images: ["https://code.s3.yandex.net/Mobile/iOS/NFT/Beige/April/1.png",
-                     "https://code.s3.yandex.net/Mobile/iOS/NFT/Beige/April/2.png",
-                     "https://code.s3.yandex.net/Mobile/iOS/NFT/Beige/April/3.png"],
-            rating: 3,
-            description: "A 3D model of a mythical creature.",
-            price: 4.5,
-            author: "6",
-            id: "1")
-    ]
+    
+    //MARK: - Private Properties
+    private let nftService: NftServiceProtocol
+    private let cartService: CartServiceProtocol
+    
+    
+    
+    //MARK: - Initializers
+    init(
+        nftService: NftServiceProtocol = NftService(),
+        cartService: CartServiceProtocol = CartService()
+    ) {
+        self.nftService = nftService
+        self.cartService = cartService
+        getOrders()
+    }
+    
+    func showNft() {
+        getOrders()
+    }
+    
+    
+    //MARK: - Private Methods
+    private func getOrders() {
+        isLoad = true
+        nftArray = []
+        cartService.getOrder { [weak self] result in
+            guard let self else { return }
+            DispatchQueue.main.async {
+                switch result {
+                case .success(let order):
+                    self.orders = order
+                case .failure(let error):
+                    self.isLoad = false
+                    fatalError("Problem whith order \(error)")
+                }
+            }
+        }
+    }
+    
+    private func getNFtOrder() {
+        isLoad = true
+        if orders.isEmpty {
+            isLoad = false
+        } else {
+            orders.forEach {
+                nftService.getNFT(id: $0) { [weak self] result in
+                    guard let self else { return }
+                    DispatchQueue.main.async {
+                        switch result {
+                        case .success(let nft):
+                            self.nftArray.append(nft)
+                        case .failure(let error):
+                            self.isLoad = false
+                            fatalError("Problem woth nft: \(error)")
+                        }
+                        
+                    }
+                }
+            }
+            isLoad = false
+        }
+    }
+    
+    
+    
 }
