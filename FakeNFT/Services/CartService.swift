@@ -17,18 +17,18 @@ protocol CartServiceProtocol {
 struct CartService: CartServiceProtocol {
     
     let networkClient: NetworkClient
-    let getOrderNFTs: NetworkRequest
+    let getOrderNfts: NetworkRequest
     
     init(
         networkClient: NetworkClient = DefaultNetworkClient(),
         getOrderNFTs: NetworkRequest = GetOrderRequest()
     ) {
         self.networkClient = networkClient
-        self.getOrderNFTs = getOrderNFTs
+        self.getOrderNfts = getOrderNFTs
     }
     
     func getOrder(completion: @escaping (Result<[String], Error>) -> Void) {
-        networkClient.send(request: getOrderNFTs, type: OrderModel.self) { result in
+        networkClient.send(request: getOrderNfts, type: OrderModel.self) { result in
             DispatchQueue.main.async {
                 switch result {
                     case .success(let order):
@@ -73,7 +73,8 @@ struct GetOrderRequest: NetworkRequest {
 
 struct PutOrderRequest: NetworkRequest {
     var endpoint: URL? {
-        Constants.endpoint.appendingPathComponent("/api/v1/orders/1")
+        URL(string: "https://64c51731c853c26efada7bb6.mockapi.io/api/v1/orders/1")
+//        Constants.endpoint.appendingPathComponent("/api/v1/orders/1")
     }
     
     var httpMethod: HttpMethod { .put }

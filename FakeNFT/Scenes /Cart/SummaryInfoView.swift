@@ -67,7 +67,7 @@ final class SummaryInfoView: UIView {
     // MARK: - Public Methods
     
     func configureSummary(with summaryInfo: SummaryInfo) {
-        countNftLabel.text = "\(summaryInfo.countNFT) NFT"
+        countNftLabel.text = "\(summaryInfo.countNft) NFT"
         priceLabel.text = "\(summaryInfo.price) ETH"
     }
     
