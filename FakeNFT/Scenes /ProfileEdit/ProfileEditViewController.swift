@@ -290,6 +290,6 @@ extension ProfileEditViewController: ProfileEditViewProtocol {
     }
 
     func profileUpdateSuccessful() {
-        ProgressHUD.showSucceed(TextLabels.ProfileEditVC.profileUpdatedSuccessfully, delay: 2.0)
+        ProgressHUD.showSucceed(TextLabels.ProfileEditVC.profileUpdatedSuccesfully, delay: 2.0)
     }
 }
