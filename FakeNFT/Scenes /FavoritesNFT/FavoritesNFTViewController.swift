@@ -27,7 +27,10 @@ final class FavoritesNFTViewController: UIViewController {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
 
-        let totalHorizontalPadding: CGFloat = LayoutConstants.horizontalPadding * LayoutConstants.numberOfColumns + LayoutConstants.interItemSpacing
+        let totalHorizontalPadding: CGFloat = (
+            LayoutConstants.horizontalPadding * LayoutConstants.numberOfColumns +
+            LayoutConstants.interItemSpacing
+        )
         let itemWidth: CGFloat = (view.frame.width - totalHorizontalPadding) / LayoutConstants.numberOfColumns
         layout.itemSize = CGSize(width: itemWidth, height: 80)
 
