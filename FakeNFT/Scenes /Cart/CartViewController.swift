@@ -7,16 +7,23 @@
 
 import UIKit
 
-final class CartViewController: UIViewController {
+protocol CartViewControllerProtocol: AnyObject {
+    func reload()
+    //    var nftArray: [NFTModel] { get }
+}
+
+final class CartViewController: UIViewController, CartViewControllerProtocol {
+    
+    // MARK: - Properties
+    
+    var presenter: CartPresenterProtocol?
     
     // MARK: - Private Properties
-    
-    private let presenter: CartPresenterProtocol
     
     private lazy var nftTableView: UITableView = {
         let element = UITableView()
         element.separatorStyle = .none
-        element.backgroundColor = .clear
+        element.backgroundColor = .ypWhite
         element.allowsSelection = false
         element.register(CartViewControllerCell.self, forCellReuseIdentifier: "CartCell")
         element.translatesAutoresizingMaskIntoConstraints = false
@@ -36,21 +43,8 @@ final class CartViewController: UIViewController {
         action: #selector(didTapsortButton)
     )
     
-    
-    // MARK: - Initializers
-
-    init(presenter: CartPresenterProtocol = CartPresenter()) {
-        self.presenter = presenter
-        super.init(nibName: nil, bundle: nil)
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    
     // MARK: - View Life Cycles
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         nftTableView.delegate = self
@@ -58,9 +52,15 @@ final class CartViewController: UIViewController {
         setNavBar()
         addViews()
         addConstraints()
-        
+        presenter?.showNft()
+        presenter = CartPresenter(view: self)
     }
     
+    // MARK: - Methods
+    
+    func reload() {
+        nftTableView.reloadData()
+    }
     
     // MARK: - Private Methods
     
@@ -90,7 +90,7 @@ final class CartViewController: UIViewController {
             nftTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
         ])
     }
-        
+    
     
     //MARK: objc func
     @objc
@@ -103,16 +103,18 @@ final class CartViewController: UIViewController {
 // MARK: - UITableViewDataSource
 extension CartViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        presenter.nftArray.count
+        presenter?.nftArray.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "CartCell", for: indexPath) as? CartViewControllerCell else { return UITableViewCell() }
         
-        let model = presenter.nftArray[indexPath.row]
-        cell.configureCell(with: model)
-        cell.delegate = self
         
+        if let model = presenter?.nftArray[indexPath.row] {
+            cell.configureCell(with: model)
+        }
+        
+        cell.delegate = self
         return cell
     }
     
@@ -130,12 +132,26 @@ extension CartViewController: CartNFTCellDelegate {
     func didTapDeleteButton(on nft: NFTModel) {
         let deleteFromCartVC = DeleteFromCartViewController()
         deleteFromCartVC.nftForDelete = nft
-//        deleteFromCartVC.delegate = self
+        deleteFromCartVC.delegate = self
         deleteFromCartVC.modalPresentationStyle = .overFullScreen
         deleteFromCartVC.modalTransitionStyle = .crossDissolve
         present(deleteFromCartVC, animated: true)
     }
 }
 
-        
+// MARK: - DeleteFromCartViewControllerDelegate
+
+extension CartViewController: DeleteFromCartViewControllerDelegate {
+    func didTapReturnButton() {
+        dismiss(animated: true)
+    }
+    
+    func didTapDeleteButton(_ model: NFTModel) {
+        presenter?.deleteNft(model) { [weak self] in
+            self?.dismiss(animated: true)
+        }
+    }
+}
+
+
 

@@ -2,7 +2,7 @@ import UIKit
 
 final class TabBarController: UITabBarController {
 
-    var servicesAssembly: ServicesAssembly!
+//    var servicesAssembly: ServicesAssembly!
 
     private let catalogTabBarItem = UITabBarItem(
         title: NSLocalizedString("Tab.catalog", comment: ""),
@@ -17,7 +17,7 @@ final class TabBarController: UITabBarController {
 //            servicesAssembly: servicesAssembly
 //        )
 //        catalogController.tabBarItem = catalogTabBarItem
-
+//        viewControllers = [catalogController]
         UITabBar.appearance().barTintColor = .systemBackground
         view.backgroundColor = .systemBackground
         setupTabBarItems()

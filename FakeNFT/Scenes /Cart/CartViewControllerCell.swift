@@ -23,7 +23,7 @@ final class CartViewControllerCell: UITableViewCell {
     // MARK: - private Properties
     
     private let imageCellView: UIImageView = {
-       let image = UIImageView()
+        let image = UIImageView()
         image.contentMode = .scaleAspectFit
         image.layer.cornerRadius = 12
         image.layer.masksToBounds = true
@@ -32,13 +32,13 @@ final class CartViewControllerCell: UITableViewCell {
     }()
     
     private let ratingImageView: UIImageView = {
-       let image = UIImageView()
+        let image = UIImageView()
         image.translatesAutoresizingMaskIntoConstraints = false
         return image
     }()
     
     private let titleLabel: UILabel = {
-       let title = UILabel()
+        let title = UILabel()
         title.translatesAutoresizingMaskIntoConstraints = false
         title.font = .bodyBold17
         title.textColor = .ypBlack
@@ -46,16 +46,16 @@ final class CartViewControllerCell: UITableViewCell {
     }()
     
     private let priceTitle: UILabel = {
-       let title = UILabel()
+        let title = UILabel()
         title.translatesAutoresizingMaskIntoConstraints = false
         title.font = .caption13
-        title.text = "Цена"
+        title.text = NSLocalizedString("Price", comment: "")
         title.textColor = .ypBlack
         return title
     }()
     
     private lazy var price: UILabel = {
-       let title = UILabel()
+        let title = UILabel()
         title.translatesAutoresizingMaskIntoConstraints = false
         title.font = .bodyBold17
         title.textColor = .ypBlack
@@ -75,6 +75,7 @@ final class CartViewControllerCell: UITableViewCell {
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        backgroundColor = .clear
         setView()
     }
     
@@ -104,12 +105,12 @@ final class CartViewControllerCell: UITableViewCell {
         titleLabel.text = model.name
         price.text = "\(model.price) ETH"
         switch model.rating {
-            case 0: ratingImageView.image = UIImage.Icons.zeroStarRating
-            case 1: ratingImageView.image = UIImage.Icons.oneStarRating
-            case 2: ratingImageView.image = UIImage.Icons.twoStarRating
-            case 3: ratingImageView.image = UIImage.Icons.threeStarRating
-            case 4: ratingImageView.image = UIImage.Icons.fourStarRating
-            case 5: ratingImageView.image = UIImage.Icons.fiveStarRating
+        case 0: ratingImageView.image = UIImage.Icons.zeroStarRating
+        case 1: ratingImageView.image = UIImage.Icons.oneStarRating
+        case 2: ratingImageView.image = UIImage.Icons.twoStarRating
+        case 3: ratingImageView.image = UIImage.Icons.threeStarRating
+        case 4: ratingImageView.image = UIImage.Icons.fourStarRating
+        case 5: ratingImageView.image = UIImage.Icons.fiveStarRating
         default:
             break
         }
@@ -124,7 +125,7 @@ final class CartViewControllerCell: UITableViewCell {
             .forEach {
                 contentView.addSubview($0)
             }
-
+        
         addConstraints()
     }
     

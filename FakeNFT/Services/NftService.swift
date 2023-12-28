@@ -1,36 +1,40 @@
 import Foundation
 
-typealias NftCompletion = (Result<Nft, Error>) -> Void
+typealias NftCompletion = (Result<NFTModel, Error>) -> Void
 
-protocol NftService {
-    func loadNft(id: String, completion: @escaping NftCompletion)
+protocol NftServiceProtocol {
+    var networkClient: NetworkClient { get }
+    func getNft(id: String, completion: @escaping NftCompletion)
 }
 
-final class NftServiceImpl: NftService {
+final class NftService: NftServiceProtocol {
 
-    private let networkClient: NetworkClient
-    private let storage: NftStorage
+    let networkClient: NetworkClient
 
-    init(networkClient: NetworkClient, storage: NftStorage) {
-        self.storage = storage
+    init(networkClient: NetworkClient = DefaultNetworkClient()) {
         self.networkClient = networkClient
     }
 
-    func loadNft(id: String, completion: @escaping NftCompletion) {
-        if let nft = storage.getNft(with: id) {
-            completion(.success(nft))
-            return
-        }
+    func getNft(id nftId: String, completion: @escaping NftCompletion ) {
+        let getRequest = GetNFTRequest(nftId: nftId)
 
-        let request = NFTRequest(id: id)
-        networkClient.send(request: request, type: Nft.self) { [weak storage] result in
-            switch result {
-            case .success(let nft):
-                storage?.saveNft(nft)
-                completion(.success(nft))
-            case .failure(let error):
-                completion(.failure(error))
+        networkClient.send(request: getRequest, type: NFTModel.self) { result in
+            DispatchQueue.main.async {
+                completion(result)
             }
         }
     }
+}
+
+//TODO: - Вынести в одлеьный файл и добавить ссылку на новй api
+struct GetNFTRequest: NetworkRequest {
+    let nftId: String
+    var endpoint: URL? {
+        URL(string: "https://64c51731c853c26efada7bb6.mockapi.io/api/v1/nft/\(nftId)")
+//        Constants.endpoint.appendingPathComponent("/api/v1/nft/\(NFTID)")
+    }
+    
+    var httpMethod: HttpMethod {.get}
+    
+    
 }

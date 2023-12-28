@@ -8,6 +8,6 @@
 import Foundation
 
 struct SummaryInfo {
-    var countNFT: Int
+    var countNft: Int
     var price: Float
 }
