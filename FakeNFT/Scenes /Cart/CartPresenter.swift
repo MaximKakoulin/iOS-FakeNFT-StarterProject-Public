@@ -19,7 +19,9 @@ protocol CartPresenterProtocol: AnyObject {
 
 
 final class CartPresenter: CartPresenterProtocol {
+    
     //MARK: - Propertirs
+    
     var nftArray: [NFTModel] = []
     var orders: [String] = [] {
         didSet {
@@ -70,7 +72,7 @@ final class CartPresenter: CartPresenterProtocol {
                     self.orders = order
                 case .failure(let error):
                     self.isLoad = false
-                    fatalError("Problem whith order \(error)")
+                    print(error.localizedDescription)
                 }
                 self.view?.reload()
             }
@@ -91,7 +93,7 @@ final class CartPresenter: CartPresenterProtocol {
                             self.nftArray.append(nft)
                         case .failure(let error):
                             self.isLoad = false
-                            fatalError("Problem woth nft: \(error)")
+                            print(error.localizedDescription)
                         }
                         self.view?.reload()
                     }
@@ -108,18 +110,15 @@ final class CartPresenter: CartPresenterProtocol {
             guard let self else { return }
             DispatchQueue.main.async {
                 switch result {
-                    case .success(let order):
-                        self.orders = order.nfts
-                        self.nftArray = self.nftArray.filter { updatedOrder.contains($0.id) }
-                        completion()
-                    case .failure(let error):
-                        print(error.localizedDescription)
+                case .success(let order):
+                    self.orders = order.nfts
+                    self.nftArray = self.nftArray.filter { updatedOrder.contains($0.id) }
+                    completion()
+                case .failure(let error):
+                    print(error.localizedDescription)
                 }
             }
         }
         isLoad = false
-    }
-    
-    
-    
+    }  
 }

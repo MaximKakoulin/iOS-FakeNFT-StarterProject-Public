@@ -41,13 +41,12 @@ final class SummaryInfoView: UIView {
         button.layer.cornerRadius = 16
         button.backgroundColor = .ypBlack
         button.setTitleColor(.ypWhite, for: .normal)
-        button.setTitle("To pay", for: .normal)
+        let text = NSLocalizedString("ToPay", comment: "")
+        button.setTitle(text, for: .normal)
         button.titleLabel?.font = .bodyBold17
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
-    
-    
     
     
     // MARK: - LifeCycle

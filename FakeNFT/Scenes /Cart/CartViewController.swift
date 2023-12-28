@@ -9,14 +9,16 @@ import UIKit
 
 protocol CartViewControllerProtocol: AnyObject {
     func reload()
-//    var nftArray: [NFTModel] { get }
+    //    var nftArray: [NFTModel] { get }
 }
 
 final class CartViewController: UIViewController, CartViewControllerProtocol {
     
+    // MARK: - Properties
+    
+    var presenter: CartPresenterProtocol?
+    
     // MARK: - Private Properties
-
-//    private let presenter: CartPresenterProtocol
     
     private lazy var nftTableView: UITableView = {
         let element = UITableView()
@@ -41,27 +43,8 @@ final class CartViewController: UIViewController, CartViewControllerProtocol {
         action: #selector(didTapsortButton)
     )
     
-    
-    // MARK: - Initializers
-    
-    var presenter: CartPresenterProtocol?
-
-//    init(presenter: CartPresenterProtocol = CartPresenter(view: )) {
-//        self.presenter = presenter
-//        super.init(nibName: nil, bundle: nil)
-//    }
-//    
-//    required init?(coder: NSCoder) {
-//        fatalError("init(coder:) has not been implemented")
-//    }
-    
-    func reload() {
-        nftTableView.reloadData()
-    }
-    
-    
     // MARK: - View Life Cycles
-    //TODO: - Разобраться почему элементы не отображаются сразу
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         nftTableView.delegate = self
@@ -73,6 +56,11 @@ final class CartViewController: UIViewController, CartViewControllerProtocol {
         presenter = CartPresenter(view: self)
     }
     
+    // MARK: - Methods
+    
+    func reload() {
+        nftTableView.reloadData()
+    }
     
     // MARK: - Private Methods
     
@@ -102,7 +90,7 @@ final class CartViewController: UIViewController, CartViewControllerProtocol {
             nftTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
         ])
     }
-        
+    
     
     //MARK: objc func
     @objc
@@ -159,12 +147,11 @@ extension CartViewController: DeleteFromCartViewControllerDelegate {
     }
     
     func didTapDeleteButton(_ model: NFTModel) {
-        print("Поехали")
         presenter?.deleteNft(model) { [weak self] in
             self?.dismiss(animated: true)
         }
     }
 }
 
-        
+
 
