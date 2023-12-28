@@ -16,4 +16,5 @@ struct NFTModel: Decodable {
     let price: Float
     let author: String
     let id: String
+    var authorName: String?
 }

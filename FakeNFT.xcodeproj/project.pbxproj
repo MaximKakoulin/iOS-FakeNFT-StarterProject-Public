@@ -55,6 +55,7 @@
 		94BD21922B3C275200FA20BE /* DevelopersData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94BD21912B3C275200FA20BE /* DevelopersData.swift */; };
 		94BD21952B3C3A4B00FA20BE /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94BD21942B3C3A4B00FA20BE /* OnboardingViewController.swift */; };
 		94BD21962B3C455600FA20BE /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 94BD21982B3C455600FA20BE /* Localizable.strings */; };
+		94BD219B2B3D9AAD00FA20BE /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94BD219A2B3D9AAD00FA20BE /* UserModel.swift */; };
 		94F468832B2F15FB00576FC8 /* UserProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94F468822B2F15FB00576FC8 /* UserProfile.swift */; };
 		94F468852B2F173C00576FC8 /* ProfileButtonsStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94F468842B2F173C00576FC8 /* ProfileButtonsStackView.swift */; };
 		94F468882B2F17E000576FC8 /* UserProfileStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94F468872B2F17E000576FC8 /* UserProfileStackView.swift */; };
@@ -144,6 +145,7 @@
 		94BD21942B3C3A4B00FA20BE /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
 		94BD21972B3C455600FA20BE /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
 		94BD21992B3C455900FA20BE /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		94BD219A2B3D9AAD00FA20BE /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		94F468822B2F15FB00576FC8 /* UserProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfile.swift; sourceTree = "<group>"; };
 		94F468842B2F173C00576FC8 /* ProfileButtonsStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileButtonsStackView.swift; sourceTree = "<group>"; };
 		94F468872B2F17E000576FC8 /* UserProfileStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileStackView.swift; sourceTree = "<group>"; };
@@ -442,6 +444,7 @@
 				94F468822B2F15FB00576FC8 /* UserProfile.swift */,
 				94F4689B2B3724CA00576FC8 /* UploadProfileModel.swift */,
 				94BD21812B3C1DEA00FA20BE /* NFTModel.swift */,
+				94BD219A2B3D9AAD00FA20BE /* UserModel.swift */,
 			);
 			path = ProfileModel;
 			sourceTree = "<group>";
@@ -711,6 +714,7 @@
 				94BD217C2B39CFFF00FA20BE /* MyNFTViewController.swift in Sources */,
 				3F68069929CBBAF100B4F915 /* SceneDelegate.swift in Sources */,
 				0C79EE6C2A76DE2E00EE90EA /* ServicesAssemly.swift in Sources */,
+				94BD219B2B3D9AAD00FA20BE /* UserModel.swift in Sources */,
 				0CFCB74E2A7817DC0009A829 /* NftStorage.swift in Sources */,
 				3FC8C39129D2453B0081F015 /* ExampleRequest.swift in Sources */,
 				94F468932B2F1ADE00576FC8 /* ProfileButton.swift in Sources */,

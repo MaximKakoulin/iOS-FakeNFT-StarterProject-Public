@@ -48,6 +48,7 @@
 "alertCloseLabel" = "Закрыть";
 "myNFTsPlaceholder" = "У Вас еще нет NFT";
 "wordFrom" = "От";
+"unknownAuthor" = "Неизвестный автор";
 
 // FavoritesNFTsVC
 "favoritesNFTsNavigationTitle" = "Избранные NFT";

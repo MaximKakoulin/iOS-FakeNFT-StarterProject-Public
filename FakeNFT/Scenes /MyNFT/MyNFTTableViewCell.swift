@@ -55,6 +55,8 @@ final class NFTTableViewCell: UITableViewCell {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont.systemFont(ofSize: 13)
         label.text = "Ошибка"
+        label.numberOfLines = 0
+        label.lineBreakMode = .byWordWrapping
         return label
     }()
 
@@ -139,6 +141,7 @@ final class NFTTableViewCell: UITableViewCell {
 
             leftStack.centerYAnchor.constraint(equalTo: containerView.centerYAnchor),
             leftStack.leadingAnchor.constraint(equalTo: nftImageView.trailingAnchor, constant: 20),
+
             starRatingView.widthAnchor.constraint(equalToConstant: 68),
             starRatingView.heightAnchor.constraint(equalToConstant: 12),
 
@@ -159,7 +162,7 @@ final class NFTTableViewCell: UITableViewCell {
 
         titleLabel.text = nft.name
         starRatingView.configureRating(nft.rating)
-        authorLabel.text = TextLabels.MyNFTsVC.wordFrom + " " + nft.author
+        authorLabel.text = TextLabels.MyNFTsVC.wordFrom + " " + (nft.authorName ?? TextLabels.MyNFTsVC.unknownAuthor)
 
         if let formatterPrice = numberFormatter.string(from: NSNumber(value: nft.price)) {
             priceLabel.text = formatterPrice + " " + "ETH"
@@ -172,7 +175,6 @@ final class NFTTableViewCell: UITableViewCell {
         } else {
             nftImageView.image = UIImage(named: "profilePlaceholder")
         }
-
     }
 
     func configurateLikeButton(isLiked: Bool) {

@@ -36,9 +36,28 @@ final class MyNFTsPresenter {
         profileService.fetchNFTs(completion: { [weak self] result in
             switch result {
             case .success(let nfts):
-                self?.nftModels = nfts.filter {self?.nftIds.contains($0.id) ?? false}
-                self?.nftModels.sort(by: { $0.rating > $1.rating })
-                self?.view?.updateWith(nfts: self?.nftModels ?? [])
+                self?.nftModels = nfts.filter { self?.nftIds.contains($0.id) ?? false }
+                let group = DispatchGroup()
+
+                self?.nftModels.forEach { nft in
+                    group.enter()
+                    self?.profileService.fetchUserDetails(userId: nft.author) { userDetailsResult in
+                        defer { group.leave() }
+                        switch userDetailsResult {
+                        case .success(let userDetails):
+                            if let index = self?.nftModels.firstIndex(where: { $0.id == nft.id }) {
+                                self?.nftModels[index].authorName = userDetails.name
+                            }
+                        case .failure(let error):
+                            print("Error fetching user details: \(error)")
+                        }
+                    }
+                }
+
+                group.notify(queue: .main) {
+                    self?.nftModels.sort(by: { $0.rating > $1.rating })
+                    self?.view?.updateWith(nfts: self?.nftModels ?? [])
+                }
             case .failure(let error):
                 self?.view?.showError(error)
             }

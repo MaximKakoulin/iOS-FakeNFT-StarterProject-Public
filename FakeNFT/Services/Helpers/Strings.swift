@@ -114,6 +114,9 @@ struct TextLabels {
         static var wordFrom: String {
             return NSLocalizedString("wordFrom", comment: "")
         }
+        static var unknownAuthor: String {
+            return NSLocalizedString("unknownAuthor", comment: "")
+        }
     }
 
     struct FavoritesNFTsVC {

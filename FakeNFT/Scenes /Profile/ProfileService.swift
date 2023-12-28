@@ -19,7 +19,14 @@ protocol NFTFetchingProtocol {
     func fetchNFTs(completion: @escaping (Result<[NFTModel], Error>) -> Void)
 }
 
-protocol ProfileServiceProtocol: ProfileFetchingProtocol, ProfileUpdatingProtocol, NFTFetchingProtocol {}
+protocol UserDetailProtocol {
+    func fetchUserDetails(userId: String, completion: @escaping (Result<UserModel, Error>) -> Void)
+}
+
+protocol ProfileServiceProtocol: ProfileFetchingProtocol,
+                                 ProfileUpdatingProtocol,
+                                 NFTFetchingProtocol,
+                                 UserDetailProtocol {}
 
 struct ProfileService {
     private let networkClient: NetworkClient
@@ -40,6 +47,11 @@ extension ProfileService: ProfileServiceProtocol {
         let request = UserProfileUpdateRequest(userId: "1", updateProfile: data)
         networkClient.send(request: request, type: UserProfile.self, onResponse: completion)
     }
+
+    func fetchUserDetails(userId: String, completion: @escaping (Result<UserModel, Error>) -> Void) {
+            let request = UserDetailRequest(userId: userId)
+            networkClient.send(request: request, type: UserModel.self, onResponse: completion)
+        }
 }
 
 extension ProfileService: NFTFetchingProtocol {
@@ -82,6 +94,18 @@ struct UserProfileUpdateRequest: NetworkRequest {
 struct NFTRequest: NetworkRequest {
     var endpoint: URL? {
         return URL(string: "https://64858e8ba795d24810b71189.mockapi.io/api/v1/nft")
+    }
+
+    var httpMethod: HttpMethod {
+        return .get
+    }
+}
+
+struct UserDetailRequest: NetworkRequest {
+    let userId: String
+
+    var endpoint: URL? {
+        return URL(string: "https://64858e8ba795d24810b71189.mockapi.io/api/v1/users/\(userId)")
     }
 
     var httpMethod: HttpMethod {

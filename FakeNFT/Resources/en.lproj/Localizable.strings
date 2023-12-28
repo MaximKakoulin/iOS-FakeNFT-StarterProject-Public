@@ -48,6 +48,7 @@
 "alertCloseLabel" = "Close";
 "myNFTsPlaceholder" = "You don't have any NFTs yet";
 "wordFrom" = "From";
+"unknownAuthor" = " Unknown Author";
 
 // FavoritesNFTsVC
 "favoritesNFTsNavigationTitle" = "Favorite NFTs";
