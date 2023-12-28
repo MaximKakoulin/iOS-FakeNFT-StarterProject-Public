@@ -40,8 +40,6 @@ final class ProfileViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .whiteDayNight
-
-//        presenter?.viewDidLoad()
         (self.presenter as? ProfilePresenter)?.delegate = self
         setupNavigationBar()
         setupViews()
@@ -106,13 +104,10 @@ extension ProfileViewController: ProfileViewProtocol {
 
     func navigateToEditProfileScreen() {
         let profileService = ProfileService()
-        // Создаем ProfileEditViewController без презентера.
         let editProfileVC = ProfileEditViewController(presenter: nil, image: currentAvatarImage)
         editProfileVC.delegate = self
-        // Создаем ProfileEditPresenter, используя ProfileEditViewController в качестве view.
         let editProfilePresenter = ProfileEditPresenter(view: editProfileVC, profileService: profileService)
         editProfilePresenter.delegate = self
-        // Устанавливаем презентер для ProfileEditViewController.
         editProfileVC.presenter = editProfilePresenter
         editProfileVC.currentUserProfile = self.presenter?.currentUserProfile
         editProfileVC.modalPresentationStyle = .pageSheet
@@ -177,9 +172,3 @@ extension ProfileViewController: ProfilePresenterDelegate {
     }
 
 }
-
-// extension ProfileViewController: ProfileEditPresenterDelegate {
-//    func profileDidUpdate(_ profile: UserProfile) {
-//        self.updateUI(with: profile)
-//    }
-// }

@@ -39,7 +39,6 @@ final class ProfileButtonsStackView: UIView {
     }
 
     // MARK: - Private Methods
-    /// Временный метод для начальной настройки Вью
     private func setupButtons() {
         userNFTButton.setText(TextLabels.ProfileButtonsStackView.myNFTLabel + " " + "(0)")
         userFavoritesNFTButton.setText(TextLabels.ProfileButtonsStackView.favoritesNFTLabel + " " + "(0)")

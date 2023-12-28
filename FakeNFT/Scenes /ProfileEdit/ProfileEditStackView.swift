@@ -9,7 +9,6 @@ import UIKit
 
 class ProfileEditStackView: UIStackView {
 
-    // Лейбл для отображения названия поля
     let label: UILabel = {
         let label = UILabel()
         label.font = UIFont.boldSystemFont(ofSize: 22)
@@ -22,20 +21,18 @@ class ProfileEditStackView: UIStackView {
         textView.backgroundColor = .lightGreyDayNight
         textView.textColor = .blackDayNight
         textView.font = UIFont.systemFont(ofSize: 17)
-        textView.isScrollEnabled = false // чтобы textView изменял свой размер в зависимости от содержимого
+        textView.isScrollEnabled = false
         textView.text = ""
 
         textView.layer.cornerRadius = 12
         textView.clipsToBounds = true
 
-        // Устанавил отступы по краям
         textView.textContainerInset = UIEdgeInsets(top: 11, left: 16, bottom: 11, right: 16)
         return textView
     }()
 
     private var originalTextContent: String?
 
-    // Инициализация со значениями
     init(labelText: String, textContent: String) {
         super.init(frame: .zero)
 

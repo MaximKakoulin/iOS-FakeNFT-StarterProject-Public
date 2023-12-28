@@ -140,7 +140,6 @@ extension UserProfileStackView {
                 }
             case .failure(let error):
                 print("Error retrieving from cache: \(error)")
-                // Здесь можно добавить дополнительную логику, если что-то пойдет не так с кэшем.
             }
         }
     }

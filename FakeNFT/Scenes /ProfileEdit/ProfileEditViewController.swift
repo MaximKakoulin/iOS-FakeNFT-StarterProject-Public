@@ -102,7 +102,6 @@ final class ProfileEditViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        // Запрашиваем актуальные данные о профиле
         presenter?.fetchUserProfile()
     }
 
@@ -160,7 +159,6 @@ final class ProfileEditViewController: UIViewController {
 
         ])
 
-        // Добавляем распознаватель тапов для закрытия клавиатуры
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         view.addGestureRecognizer(tapGesture)
     }
@@ -200,7 +198,6 @@ final class ProfileEditViewController: UIViewController {
         scrollView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: keyboardHeight, right: 0)
         scrollView.scrollIndicatorInsets = scrollView.contentInset
 
-        // Сдвиг скрола на высоту клавиатуры
         var activeRect: CGRect?
 
         if nameStackView.textView.isFirstResponder {
