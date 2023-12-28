@@ -166,11 +166,13 @@ extension ProfileViewController: ProfileButtonsStackViewDelegate {
 extension ProfileViewController: ProfilePresenterDelegate {
     func shouldNavigateToMyNFTsScreen(with ids: [String], and likedIds: [String]) {
         let myNFTsVC = MyNFTsViewController(nftIds: ids, likedNFTIds: likedIds)
+        myNFTsVC.hidesBottomBarWhenPushed = true
         self.navigationController?.pushViewController(myNFTsVC, animated: true)
     }
 
     func shouldNavigateTofavoriteNFTsScreen(with likedIds: [String]) {
         let favoriteNFTsVC = FavoritesNFTViewController(likedNFTIds: likedIds)
+        favoriteNFTsVC.hidesBottomBarWhenPushed = true
         self.navigationController?.pushViewController(favoriteNFTsVC, animated: true)
     }
 
