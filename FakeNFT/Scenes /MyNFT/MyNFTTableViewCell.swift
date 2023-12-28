@@ -159,7 +159,7 @@ final class NFTTableViewCell: UITableViewCell {
 
         titleLabel.text = nft.name
         starRatingView.configureRating(nft.rating)
-        authorLabel.text = "От" + " " + nft.author
+        authorLabel.text = TextLabels.MyNFTsVC.wordFrom + " " + nft.author
 
         if let formatterPrice = numberFormatter.string(from: NSNumber(value: nft.price)) {
             priceLabel.text = formatterPrice + " " + "ETH"

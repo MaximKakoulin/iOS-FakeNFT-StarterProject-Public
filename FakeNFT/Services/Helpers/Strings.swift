@@ -111,6 +111,9 @@ struct TextLabels {
         static var placeholder: String {
             return NSLocalizedString("myNFTsPlaceholder", comment: "")
         }
+        static var wordFrom: String {
+            return NSLocalizedString("wordFrom", comment: "")
+        }
     }
 
     struct FavoritesNFTsVC {

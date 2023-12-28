@@ -47,6 +47,7 @@
 "alertNameLabel" = "By Name";
 "alertCloseLabel" = "Close";
 "myNFTsPlaceholder" = "You don't have any NFTs yet";
+"wordFrom" = "From";
 
 // FavoritesNFTsVC
 "favoritesNFTsNavigationTitle" = "Favorite NFTs";
