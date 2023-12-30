@@ -7,4 +7,7 @@
 "Cart" = "Cart";
 "Price" = "Price";
 "ToPay" = "To pay";
-
+"Select payMethod" = "Select a payment method";
+"Agree purchase" = "By making a purchase, you agree to the terms and conditions";
+"User Agreement" = "User Agreement";
+"Pay" = "Pay";
