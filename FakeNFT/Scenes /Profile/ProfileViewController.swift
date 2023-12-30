@@ -13,9 +13,6 @@ protocol ProfileViewProtocol: AnyObject {
     func updateUI(with profile: UserProfile)
     func displayError(_ error: Error)
     func navigateToEditProfileScreen()
-    func navigateToMyNFTsScreen()
-    func navigateToFavoritesScreen()
-    func navigateToAboutDeveloperScreen()
 }
 
 final class ProfileViewController: UIViewController {
@@ -35,12 +32,15 @@ final class ProfileViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        presenter?.viewDidLoad()
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .whiteDayNight
-
-        presenter?.viewDidLoad()
-
+        (self.presenter as? ProfilePresenter)?.delegate = self
         setupNavigationBar()
         setupViews()
     }
@@ -60,6 +60,7 @@ final class ProfileViewController: UIViewController {
         userProfileStackView = UserProfileStackView()
         profileButtonsStackView = ProfileButtonsStackView()
         userProfileStackView.delegate = self
+        profileButtonsStackView.delegate = self
 
         view.addSubview(userProfileStackView)
         view.addSubview(profileButtonsStackView)
@@ -75,10 +76,8 @@ final class ProfileViewController: UIViewController {
             profileButtonsStackView.topAnchor.constraint(equalTo: userProfileStackView.bottomAnchor, constant: 40),
             profileButtonsStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             profileButtonsStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            profileButtonsStackView.bottomAnchor.constraint(
-                lessThanOrEqualTo: view.safeAreaLayoutGuide.bottomAnchor,
-                constant: -20
-            )
+            profileButtonsStackView.bottomAnchor.constraint(lessThanOrEqualTo: view.safeAreaLayoutGuide.bottomAnchor,
+                                                            constant: -20)
         ])
     }
 
@@ -89,6 +88,7 @@ final class ProfileViewController: UIViewController {
 
 // MARK: - ProfileViewProtocol
 extension ProfileViewController: ProfileViewProtocol {
+
     func updateUI(with profile: UserProfile) {
         userProfileStackView.update(with: profile)
         userProfileStackView.onImageLoaded = { [weak self] image in
@@ -104,35 +104,26 @@ extension ProfileViewController: ProfileViewProtocol {
 
     func navigateToEditProfileScreen() {
         let profileService = ProfileService()
-        // Создаем ProfileEditViewController без презентера.
         let editProfileVC = ProfileEditViewController(presenter: nil, image: currentAvatarImage)
         editProfileVC.delegate = self
-        // Создаем ProfileEditPresenter, используя ProfileEditViewController в качестве view.
         let editProfilePresenter = ProfileEditPresenter(view: editProfileVC, profileService: profileService)
         editProfilePresenter.delegate = self
-        // Устанавливаем презентер для ProfileEditViewController.
         editProfileVC.presenter = editProfilePresenter
         editProfileVC.currentUserProfile = self.presenter?.currentUserProfile
         editProfileVC.modalPresentationStyle = .pageSheet
         present(editProfileVC, animated: true, completion: nil)
     }
 
-    func navigateToMyNFTsScreen() {
-
-    }
-
-    func navigateToFavoritesScreen() {
-
-    }
-
     func navigateToAboutDeveloperScreen() {
-
+        let aboutDeveloperVC = AboutDeveloperViewController()
+        self.navigationController?.pushViewController(aboutDeveloperVC, animated: true)
     }
 }
 
 extension ProfileViewController: ProfileEditPresenterDelegate {
     func profileDidUpdate(_ profile: UserProfile) {
         self.updateUI(with: profile)
+        self.presenter?.updateCurrentUserProfile(with: profile)
     }
 }
 
@@ -150,4 +141,34 @@ extension ProfileViewController: UserProfileStackViewDelegate {
         let safaryVC = SFSafariViewController(url: url)
         self.present(safaryVC, animated: true, completion: nil)
     }
+}
+
+extension ProfileViewController: ProfileButtonsStackViewDelegate {
+    func didTapMyNFTButton() {
+        presenter?.didTapMyNFTs()
+    }
+
+    func didTapFavoritesNFTButton() {
+        presenter?.didTapFavorites()
+    }
+
+    func didTapAboutDeveloperButton() {
+        navigateToAboutDeveloperScreen()
+    }
+
+}
+
+extension ProfileViewController: ProfilePresenterDelegate {
+    func shouldNavigateToMyNFTsScreen(with ids: [String], and likedIds: [String]) {
+        let myNFTsVC = MyNFTsViewController(nftIds: ids, likedNFTIds: likedIds)
+        myNFTsVC.hidesBottomBarWhenPushed = true
+        self.navigationController?.pushViewController(myNFTsVC, animated: true)
+    }
+
+    func shouldNavigateTofavoriteNFTsScreen(with likedIds: [String]) {
+        let favoriteNFTsVC = FavoritesNFTViewController(likedNFTIds: likedIds)
+        favoriteNFTsVC.hidesBottomBarWhenPushed = true
+        self.navigationController?.pushViewController(favoriteNFTsVC, animated: true)
+    }
+
 }

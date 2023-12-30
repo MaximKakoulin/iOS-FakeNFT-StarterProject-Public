@@ -24,18 +24,15 @@ final class ProfileButton: UIButton {
 
     // MARK: - Private Methods
     private func setupButton() {
-        // верстаю стрелку
         setImage(arrowImage, for: .normal)
         imageView?.contentMode = .scaleAspectFit
         imageView?.tintColor = .blackDayNight
 
-        // верстаю текст
         setTitleColor(.blackDayNight, for: .normal)
         titleLabel?.numberOfLines = 1
         titleLabel?.font = UIFont.boldSystemFont(ofSize: 17)
         titleLabel?.adjustsFontSizeToFitWidth = true
 
-        // настройка расположения элементов
         contentHorizontalAlignment = .left
 
         contentEdgeInsets = UIEdgeInsets(top: 16, left: 0, bottom: 16, right: 0)

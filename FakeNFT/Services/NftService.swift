@@ -1,12 +1,12 @@
 import Foundation
 
-typealias NftCompletion = (Result<Nft, Error>) -> Void
+ typealias NftCompletion = (Result<Nft, Error>) -> Void
 
-protocol NftService {
+ protocol NftService {
     func loadNft(id: String, completion: @escaping NftCompletion)
-}
+ }
 
-final class NftServiceImpl: NftService {
+ final class NftServiceImpl: NftService {
 
     private let networkClient: NetworkClient
     private let storage: NftStorage
@@ -22,7 +22,7 @@ final class NftServiceImpl: NftService {
             return
         }
 
-        let request = NFTRequest(id: id)
+        let request = NFTRequest()
         networkClient.send(request: request, type: Nft.self) { [weak storage] result in
             switch result {
             case .success(let nft):
@@ -33,4 +33,4 @@ final class NftServiceImpl: NftService {
             }
         }
     }
-}
+ }

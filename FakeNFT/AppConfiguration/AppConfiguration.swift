@@ -20,7 +20,7 @@ class AppConfiguration {
         let profilePresenter = ProfilePresenter(view: nil,
                                                 profileService: profileService)
         profileViewController = ProfileViewController(presenter: profilePresenter)
-        profilePresenter.view = profileViewController as? ProfileViewProtocol // устанавливаем view
+        profilePresenter.view = profileViewController as? ProfileViewProtocol
 
         catalogViewController = UIViewController()
         cartViewController = UIViewController()
