@@ -32,6 +32,7 @@ final class CartViewController: UIViewController, CartViewControllerProtocol {
     
     private lazy var summaryInfoView: SummaryInfoView = {
         let view = SummaryInfoView()
+        view.delegate = self
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
@@ -153,5 +154,15 @@ extension CartViewController: DeleteFromCartViewControllerDelegate {
     }
 }
 
+
+// MARK: - SummaryViewDelegate
+
+extension CartViewController: SummaryViewDelegate {
+    func didTapToPayButton() {
+        let checkPayVC = PayViewController()
+        checkPayVC.hidesBottomBarWhenPushed = true
+        navigationController?.pushViewController(checkPayVC, animated: true)
+    }
+}
 
 

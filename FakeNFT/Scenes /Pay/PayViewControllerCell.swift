@@ -73,7 +73,7 @@ final class PayViewControllerCell: UICollectionViewCell {
     
     
     // MARK: - Methods
-    func onfigureCell(with model: CurrencyModel) {
+    func configureCell(with model: CurrencyModel) {
         currencyModel = model
         
         let imageUrl = URL(string: model.image)
