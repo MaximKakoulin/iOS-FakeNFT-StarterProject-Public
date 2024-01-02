@@ -22,6 +22,7 @@ final class PayView: UIView, UITextViewDelegate {
         textView.backgroundColor = .clear
         textView.isEditable = false
         textView.isScrollEnabled = false
+        
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.lineSpacing = 4
         
@@ -31,7 +32,6 @@ final class PayView: UIView, UITextViewDelegate {
             "User Agreement", comment: ""
         )
         let attributedString = NSMutableAttributedString(string: fullText)
-        
         let agreementRange = (
             fullText as NSString).range(of: NSLocalizedString("User Agreement", comment: "")
             )
@@ -54,12 +54,14 @@ final class PayView: UIView, UITextViewDelegate {
         textView.attributedText = attributedString
         textView.isUserInteractionEnabled = true
         textView.delegate = self
+        textView.translatesAutoresizingMaskIntoConstraints = false
         
         return textView
     }()
     
     private lazy var payButton: UIButton = {
         let button = UIButton(type: .system)
+        button.translatesAutoresizingMaskIntoConstraints = false
         button.layer.masksToBounds = true
         button.layer.cornerRadius = 16
         button.backgroundColor = .ypBlack

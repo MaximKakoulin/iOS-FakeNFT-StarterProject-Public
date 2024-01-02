@@ -35,8 +35,9 @@ final class PayViewController: UIViewController, PayViewControllerProtocoll {
         )
         collection.register(
             PayViewControllerCell.self,
-            forCellWithReuseIdentifier: "Cell"
+            forCellWithReuseIdentifier: "cell"
         )
+        collection.translatesAutoresizingMaskIntoConstraints = false
         collection.backgroundColor = .clear
         collection.allowsMultipleSelection = false
         return collection
@@ -44,6 +45,7 @@ final class PayViewController: UIViewController, PayViewControllerProtocoll {
     
     private lazy var payView: PayView = {
         let view = PayView()
+        view.translatesAutoresizingMaskIntoConstraints = false
         view.delegate = self
         return view
     }()
@@ -140,7 +142,7 @@ extension PayViewController: UICollectionViewDataSource {
 }
 
 //MARK: - UICollectionViewDelegateFlowLayout
-
+//TODO: - Разобраться с выделением ячеек 
 extension PayViewController: UICollectionViewDelegateFlowLayout {
     
     // selecting methods
@@ -148,7 +150,10 @@ extension PayViewController: UICollectionViewDelegateFlowLayout {
         guard let cell: PayViewControllerCell = currenciesCollection.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as? PayViewControllerCell else { return }
         
         guard let currencyID = cell.currencyModel?.id else { return }
-        presenter?.selectCurrency(with: currencyID)
+        if let presenter = presenter {
+            presenter.selectCurrency(with: currencyID)
+        }
+        
         cell.select()
         payView.enablePayButton()
     }
@@ -158,10 +163,9 @@ extension PayViewController: UICollectionViewDelegateFlowLayout {
         cell.deselect()
     }
     
-    // params methods
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath
     ) -> CGSize {
-        let availableSpace = collectionView.frame.width - 16 + 16 + CGFloat(2 - 1) * 8
+        let availableSpace = collectionView.frame.width - (16 + 16 + CGFloat(2 - 1) * 8)
         let cellWidth = availableSpace / 2
         return CGSize(width: cellWidth, height: 46)
     }
@@ -196,7 +200,7 @@ extension PayViewController: PayViewDelegate {
     }
     
     func didTapUserAgreementLink() {
-//        let userAgreementViewController = UserAgreementViewController()
-//        navigationController?.pushViewController(userAgreementViewController, animated: true)
+        let userAgreementViewController = UserAgreementViewController()
+        navigationController?.pushViewController(userAgreementViewController, animated: true)
     }
 }
