@@ -147,19 +147,19 @@ extension PayViewController: UICollectionViewDelegateFlowLayout {
     
     // selecting methods
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        guard let cell: PayViewControllerCell = currenciesCollection.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as? PayViewControllerCell else { return }
+        let cell: PayViewControllerCell = collectionView.cellForItem(at: indexPath) as! PayViewControllerCell
         
         guard let currencyID = cell.currencyModel?.id else { return }
-        if let presenter = presenter {
-            presenter.selectCurrency(with: currencyID)
-        }
-        
+//        if let presenter = presenter {
+//            
+//        }
+        presenter?.selectCurrency(with: currencyID)
         cell.select()
         payView.enablePayButton()
     }
     
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
-        guard let cell: PayViewControllerCell = currenciesCollection.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as? PayViewControllerCell else { return }
+        let cell: PayViewControllerCell = collectionView.cellForItem(at: indexPath) as! PayViewControllerCell
         cell.deselect()
     }
     

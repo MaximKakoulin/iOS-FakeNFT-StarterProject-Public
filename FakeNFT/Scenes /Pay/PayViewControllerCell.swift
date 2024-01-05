@@ -83,7 +83,7 @@ final class PayViewControllerCell: UICollectionViewCell {
     }
     
     func select() {
-        contentView.layer.borderColor = UIColor.black.cgColor
+        contentView.layer.borderColor = UIColor.ypBlack?.cgColor
         contentView.layer.borderWidth = 1
     }
     
