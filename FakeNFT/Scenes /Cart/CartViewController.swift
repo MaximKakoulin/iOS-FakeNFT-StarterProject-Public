@@ -37,6 +37,16 @@ final class CartViewController: UIViewController, CartViewControllerProtocol {
         return view
     }()
     
+    private lazy var emptyLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = NSLocalizedString("Cart is empty", comment: "")
+        label.textColor = .ypBlack
+        label.font = UIFont.bodyBold17
+        label.isHidden = true
+        return label
+    }()
+    
     private lazy var sortButton = UIBarButtonItem(
         image: UIImage.Icons.sort,
         style: .plain,
@@ -50,6 +60,7 @@ final class CartViewController: UIViewController, CartViewControllerProtocol {
         super.viewDidLoad()
         nftTableView.delegate = self
         nftTableView.dataSource = self
+        checkNftArray()
         setNavBar()
         addViews()
         addConstraints()
@@ -65,6 +76,30 @@ final class CartViewController: UIViewController, CartViewControllerProtocol {
     
     // MARK: - Private Methods
     
+    private func checkNftArray() {
+        
+        if presenter?.orders == nil {
+            showEmptyCartPlaceholder()
+        } else {
+            showCart()
+        }
+    }
+    
+    private func showEmptyCartPlaceholder() {
+        emptyLabel.isHidden = false
+        navigationController?.navigationBar.isHidden = true
+        nftTableView.isHidden = true
+        summaryInfoView.isHidden = true
+    }
+    
+    private func showCart() {
+        emptyLabel.isHidden = true
+        navigationController?.navigationBar.isHidden = false
+        nftTableView.isHidden = false
+        summaryInfoView.isHidden = false
+    }
+    
+    
     private func setNavBar() {
         navigationItem.rightBarButtonItem = sortButton
         navigationController?.navigationBar.tintColor = .ypBlack
@@ -77,6 +112,7 @@ final class CartViewController: UIViewController, CartViewControllerProtocol {
         view.backgroundColor = .ypWhite
         view.addSubview(nftTableView)
         view.addSubview(summaryInfoView)
+        view.addSubview(emptyLabel)
     }
     
     private func addConstraints() {
@@ -88,7 +124,10 @@ final class CartViewController: UIViewController, CartViewControllerProtocol {
             nftTableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             nftTableView.bottomAnchor.constraint(equalTo: summaryInfoView.topAnchor),
             nftTableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
-            nftTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
+            nftTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            
+            emptyLabel.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
+            emptyLabel.centerYAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerYAnchor)
         ])
     }
     
