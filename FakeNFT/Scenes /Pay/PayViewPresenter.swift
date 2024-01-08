@@ -94,19 +94,33 @@ final class PayViewPrsenter: PayViewPresenterProtocol {
         self.selectedCurrency = currenciesArray.first(where: { $0.id == id } )
     }
     
+    func switchController() {
+        switch paymentStatus {
+        case .failure:
+            view?.switchSuccessViewController()
+        case .success:
+            view?.switchFailureViewController()
+        case .notPay:
+            break
+        }
+    }
+    
     func performPayment() {
         guard let id = selectedCurrency?.id else { return }
         isLoading = true
         currencyService.performPaymentOrder(with: id) { [weak self] result in
+            print(result)
             guard let self else { return }
             DispatchQueue.main.async {
                 switch result {
                 case .success(let result):
                     if result.success == true {
                         self.paymentStatus = .success
+                        self.switchController()
                         self.clearOrder()
                     } else {
                         self.paymentStatus = .failure
+                        self.switchController()
                         self.selectedCurrency = nil
                     }
                 case .failure(let error):

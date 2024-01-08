@@ -9,6 +9,8 @@ import UIKit
 
 protocol PayViewControllerProtocoll: AnyObject {
     func reload()
+    func switchSuccessViewController()
+    func switchFailureViewController()
 }
 
 final class PayViewController: UIViewController, PayViewControllerProtocoll {
@@ -142,17 +144,13 @@ extension PayViewController: UICollectionViewDataSource {
 }
 
 //MARK: - UICollectionViewDelegateFlowLayout
-//TODO: - Разобраться с выделением ячеек 
 extension PayViewController: UICollectionViewDelegateFlowLayout {
     
-    // selecting methods
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let cell: PayViewControllerCell = collectionView.cellForItem(at: indexPath) as! PayViewControllerCell
         
         guard let currencyID = cell.currencyModel?.id else { return }
-//        if let presenter = presenter {
-//            
-//        }
+
         presenter?.selectCurrency(with: currencyID)
         cell.select()
         payView.enablePayButton()
@@ -202,5 +200,17 @@ extension PayViewController: PayViewDelegate {
     func didTapUserAgreementLink() {
         let userAgreementViewController = UserAgreementViewController()
         navigationController?.pushViewController(userAgreementViewController, animated: true)
+    }
+    
+    func switchSuccessViewController() {
+        let resultContorller = ResultViewController()
+        resultContorller.isSuccess = true
+        navigationController?.pushViewController(resultContorller, animated: true)
+    }
+    
+    func switchFailureViewController() {
+        let resultContorller = ResultViewController()
+        resultContorller.isSuccess = false
+        navigationController?.pushViewController(resultContorller, animated: true)
     }
 }
