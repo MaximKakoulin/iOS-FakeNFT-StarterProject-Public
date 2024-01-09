@@ -9,7 +9,6 @@ import UIKit
 
 protocol CartViewControllerProtocol: AnyObject {
     func reload()
-    //    var nftArray: [NFTModel] { get }
 }
 
 final class CartViewController: UIViewController, CartViewControllerProtocol {
@@ -134,7 +133,10 @@ final class CartViewController: UIViewController, CartViewControllerProtocol {
     
     //MARK: objc func
     @objc
-    private func didTapsortButton() { }
+    private func didTapsortButton() {
+        showAlertSort(presenter: presenter as! Sortable, valueSort: .cart)
+        nftTableView.reloadData()
+    }
     
     
 }

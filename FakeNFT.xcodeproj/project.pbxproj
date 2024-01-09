@@ -44,6 +44,8 @@
 		3FC8C39329D246BA0081F015 /* DateFormatters+Presets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC8C39229D246BA0081F015 /* DateFormatters+Presets.swift */; };
 		D949E24E2B447A220019492A /* UserAgreementViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D949E24D2B447A220019492A /* UserAgreementViewController.swift */; };
 		D949E2502B4B0FB40019492A /* ResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D949E24F2B4B0FB40019492A /* ResultViewController.swift */; };
+		D949E2522B4DB5FF0019492A /* UIViewController+ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = D949E2512B4DB5FF0019492A /* UIViewController+ext.swift */; };
+		D949E2542B4DB9D50019492A /* SortSaveService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D949E2532B4DB9D50019492A /* SortSaveService.swift */; };
 		D9B071C42B2B984E008A65EE /* CartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9B071C32B2B984E008A65EE /* CartViewController.swift */; };
 		D9B071C62B2CA0EB008A65EE /* CartPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9B071C52B2CA0EB008A65EE /* CartPresenter.swift */; };
 		D9B071F82B2E0811008A65EE /* CartViewControllerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9B071F72B2E0811008A65EE /* CartViewControllerCell.swift */; };
@@ -124,6 +126,8 @@
 		3FC8C39229D246BA0081F015 /* DateFormatters+Presets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateFormatters+Presets.swift"; sourceTree = "<group>"; };
 		D949E24D2B447A220019492A /* UserAgreementViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAgreementViewController.swift; sourceTree = "<group>"; };
 		D949E24F2B4B0FB40019492A /* ResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultViewController.swift; sourceTree = "<group>"; };
+		D949E2512B4DB5FF0019492A /* UIViewController+ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+ext.swift"; sourceTree = "<group>"; };
+		D949E2532B4DB9D50019492A /* SortSaveService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortSaveService.swift; sourceTree = "<group>"; };
 		D9B071C32B2B984E008A65EE /* CartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartViewController.swift; sourceTree = "<group>"; };
 		D9B071C52B2CA0EB008A65EE /* CartPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartPresenter.swift; sourceTree = "<group>"; };
 		D9B071F72B2E0811008A65EE /* CartViewControllerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartViewControllerCell.swift; sourceTree = "<group>"; };
@@ -302,6 +306,7 @@
 				0CFCB73F2A78002A0009A829 /* NftService.swift */,
 				D9B0720D2B3A1E92008A65EE /* CartService.swift */,
 				D9B0721C2B4338F3008A65EE /* CurrencyService.swift */,
+				D949E2532B4DB9D50019492A /* SortSaveService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -398,6 +403,7 @@
 			isa = PBXGroup;
 			children = (
 				D9B071FC2B2E0FFF008A65EE /* UIImage+ext.swift */,
+				D949E2512B4DB5FF0019492A /* UIViewController+ext.swift */,
 			);
 			path = Extentions;
 			sourceTree = "<group>";
@@ -633,6 +639,7 @@
 				0CFCB7402A78002A0009A829 /* NftService.swift in Sources */,
 				D949E2502B4B0FB40019492A /* ResultViewController.swift in Sources */,
 				D9B071FF2B2E10B9008A65EE /* DeleteFromCartViewController.swift in Sources */,
+				D949E2522B4DB5FF0019492A /* UIViewController+ext.swift in Sources */,
 				3F6806D529CBBEC700B4F915 /* NetworkTask.swift in Sources */,
 				0CF2C2DB2A783C1B00FDC837 /* LoadingView.swift in Sources */,
 				3F68069729CBBAF100B4F915 /* AppDelegate.swift in Sources */,
@@ -644,6 +651,7 @@
 				0CFCB74E2A7817DC0009A829 /* NftStorage.swift in Sources */,
 				3FC8C39129D2453B0081F015 /* ExampleRequest.swift in Sources */,
 				0CFCB7462A78064B0009A829 /* NftDetailCellModel.swift in Sources */,
+				D949E2542B4DB9D50019492A /* SortSaveService.swift in Sources */,
 				0CFCB74B2A780EA80009A829 /* UIView+Constraints.swift in Sources */,
 				3F6806D729CBC50A00B4F915 /* CellsReusingUtils.swift in Sources */,
 				D9B072172B409B05008A65EE /* CurrencyModel.swift in Sources */,

@@ -17,6 +17,9 @@ protocol CartPresenterProtocol: AnyObject {
     func showNft()
     func deleteNft(_ nft: NFTModel, completion: @escaping () -> Void) }
 
+protocol Sortable {
+    func sort(param: Sort)
+}
 
 final class CartPresenter: CartPresenterProtocol {
     
@@ -40,6 +43,7 @@ final class CartPresenter: CartPresenterProtocol {
     private let nftService: NftServiceProtocol
     private let cartService: CartServiceProtocol
     private weak var view: CartViewControllerProtocol?
+    private let sortSaveService: SortSaveServiceProtocol
     
     
     
@@ -47,11 +51,13 @@ final class CartPresenter: CartPresenterProtocol {
     init(
         view: CartViewControllerProtocol?,
         nftService: NftServiceProtocol = NftService(),
-        cartService: CartServiceProtocol = CartService()
+        cartService: CartServiceProtocol = CartService(),
+        sortSaveService: SortSaveServiceProtocol = SortSaveService(screen: .cart)
     ) {
         self.view = view
         self.nftService = nftService
         self.cartService = cartService
+        self.sortSaveService = sortSaveService
         getOrders()
     }
     
@@ -121,4 +127,25 @@ final class CartPresenter: CartPresenterProtocol {
         }
         isLoad = false
     }  
+}
+
+
+// MARK: - Sortable
+
+extension CartPresenter: Sortable {
+    func sort(param: Sort) {
+        sortSaveService.saveSorting(param: param)
+        switch param {
+            case .price:
+                nftArray = nftArray.sorted(by: {$0.price > $1.price} )
+            case .rating:
+                nftArray = nftArray.sorted(by: {$0.rating > $1.rating} )
+            case .NFTName:
+                nftArray = nftArray.sorted(by: {$0.name < $1.name} )
+            case .NFTCount:
+                break
+            case .name:
+                break
+        }
+    }
 }
