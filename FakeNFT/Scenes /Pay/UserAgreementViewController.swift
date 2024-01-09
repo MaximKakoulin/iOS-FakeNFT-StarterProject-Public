@@ -18,16 +18,16 @@ final class UserAgreementViewController: UIViewController {
         action: #selector(didTapBackButton)
     )
     
-    
     //MARK: - lifeCycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         addView()
         loadPage()
     }
     
-    
     //MARK: - action
+    
     @objc
     func didTapBackButton() {
         navigationController?.popViewController(animated: true)
@@ -35,6 +35,7 @@ final class UserAgreementViewController: UIViewController {
     
     
     //MARK: - Private func
+    
     private func loadPage() {
         let request = URLRequest(url: Constants.userAgreementUrl)
         webView.load(request)
@@ -49,9 +50,6 @@ final class UserAgreementViewController: UIViewController {
         setNavBar()
         addConstraints()
     }
-    
-    
-    
     
     private func setNavBar() {
         navigationController?.navigationBar.barTintColor = .ypWhite

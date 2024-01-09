@@ -123,6 +123,5 @@ final class PayViewControllerCell: UICollectionViewCell {
             labelsStackView.leadingAnchor.constraint(equalTo: imageBackgroundView.trailingAnchor, constant: 4)
         ])
     }
-    
-    
+
 }

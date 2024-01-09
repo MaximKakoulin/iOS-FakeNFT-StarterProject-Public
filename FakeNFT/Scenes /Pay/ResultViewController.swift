@@ -68,6 +68,8 @@ final class ResultViewController: UIViewController {
         addView()
     }
     
+    
+    //MARK: - Private methods
     private func addView() {
         [stackView, backButton].forEach{
             $0.translatesAutoresizingMaskIntoConstraints = false

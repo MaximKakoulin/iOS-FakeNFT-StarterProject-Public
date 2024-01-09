@@ -78,6 +78,7 @@ final class PayView: UIView, UITextViewDelegate {
     }()
     
     // MARK: - Properties
+    
     weak var delegate: PayViewDelegate?
     
     // MARK: - LifeCycle
