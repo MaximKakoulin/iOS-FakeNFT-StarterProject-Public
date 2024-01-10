@@ -14,12 +14,14 @@ protocol PayViewControllerProtocoll: AnyObject {
 }
 
 final class PayViewController: UIViewController, PayViewControllerProtocoll {
+    
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = .bodyBold17
         label.text = NSLocalizedString("Select payMethod", comment: "")
-        label.textColor = .ypWhite
+        label.textColor = .ypBlack
+        label.sizeToFit()
         return label
     }()
     
@@ -96,7 +98,7 @@ final class PayViewController: UIViewController, PayViewControllerProtocoll {
     private func addNavBar() {
         navigationItem.titleView = titleLabel
         navigationItem.leftBarButtonItem = backButton
-        navigationController?.navigationBar.tintColor = .ypBlue
+        navigationController?.navigationBar.tintColor = .ypBlack
         navigationController?.navigationBar.backgroundColor = .ypWhite
         navigationController?.navigationBar.prefersLargeTitles = false
     }

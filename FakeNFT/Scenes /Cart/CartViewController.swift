@@ -59,7 +59,7 @@ final class CartViewController: UIViewController, CartViewControllerProtocol {
         super.viewDidLoad()
         nftTableView.delegate = self
         nftTableView.dataSource = self
-        checkNftArray()
+//        checkNftArray()
         setNavBar()
         addViews()
         addConstraints()
