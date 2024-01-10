@@ -1,5 +1,11 @@
 # ТЗ мобильного приложения FakeNFT
 
+# Запись скринкаста эпика "Профиль"
+
+https://github.com/MaximKakoulin/iOS-FakeNFT-StarterProject-Public/assets/121349419/0ec84f4e-d8ae-4f8b-81c8-e3f3ed5c0ff5
+
+
+
 # Ссылки
 
 [Дизайн Figma](https://www.figma.com/file/k1LcgXHGTHIeiCv4XuPbND/FakeNFT-(YP)?node-id=96-5542&t=YdNbOI8EcqdYmDeg-0)
