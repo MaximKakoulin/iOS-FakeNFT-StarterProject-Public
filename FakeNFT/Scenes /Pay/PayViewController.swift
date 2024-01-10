@@ -62,8 +62,8 @@ final class PayViewController: UIViewController, PayViewControllerProtocoll {
         currenciesCollection.dataSource = self
         
         addView()
-        presenter?.showCurrency()
         presenter = PayViewPrsenter(view: self)
+        presenter?.showCurrency()
     }
     
     override func viewWillAppear(_ animated: Bool) {
