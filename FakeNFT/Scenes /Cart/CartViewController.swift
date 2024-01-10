@@ -59,12 +59,12 @@ final class CartViewController: UIViewController, CartViewControllerProtocol {
         super.viewDidLoad()
         nftTableView.delegate = self
         nftTableView.dataSource = self
-//        checkNftArray()
+        presenter = CartPresenter(view: self)
         setNavBar()
         addViews()
         addConstraints()
         presenter?.showNft()
-        presenter = CartPresenter(view: self)
+        checkNftArray()
     }
     
     // MARK: - Methods
@@ -77,7 +77,9 @@ final class CartViewController: UIViewController, CartViewControllerProtocol {
     
     private func checkNftArray() {
         
-        if presenter?.orders == nil {
+        guard let presenter = presenter else { return }
+        
+        if presenter.orders.isEmpty {
             showEmptyCartPlaceholder()
         } else {
             showCart()
