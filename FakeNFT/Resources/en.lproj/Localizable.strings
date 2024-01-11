@@ -1,3 +1,4 @@
+
 // OnboardingVC
 "firstHeader" = "Explore";
 "firstDescription" = "Join and discover a new world\nof unique NFTs for collectors";
@@ -56,3 +57,28 @@
 
 // AboutDevelopersVC
 "aboutDevelopersNavigationTitle" = "Developer Team";
+
+//Cart
+"Tab.catalog" = "Catalog";
+"Catalog.openNft" = "Open Nft";
+"Error.network" = "Произошла ошибка сети";
+"Error.unknown" = "Произошла неизвестная ошибка";
+"Error.repeat" = "Повторить";
+"Error.title" = "Ошибка";
+"Cart" = "Cart";
+"Price" = "Price";
+"ToPay" = "To pay";
+"Select payMethod" = "Select a payment method";
+"Agree purchase" = "By making a purchase, you agree to the terms and conditions";
+"User Agreement" = "User Agreement";
+"Pay" = "Pay";
+"Success! Payment completed, congratulations on your purchase!" = "Success! Payment completed, congratulations on your purchase!!";
+"Try again" = "Try again";
+"Oops! Something went wrong :( Try again!" = "Oops! Something went wrong :( Try again!";
+"Sorting" = "Sorting";
+"By price" = "By price";
+"By rating" = "By rating";
+"By name" = "By name";
+"By NFT name" = "By NFT name";
+"By NFT count" = "By NFT count";
+

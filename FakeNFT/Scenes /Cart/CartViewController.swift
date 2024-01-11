@@ -9,7 +9,6 @@ import UIKit
 
 protocol CartViewControllerProtocol: AnyObject {
     func reload()
-    //    var nftArray: [NFTModel] { get }
 }
 
 final class CartViewController: UIViewController, CartViewControllerProtocol {
@@ -32,8 +31,19 @@ final class CartViewController: UIViewController, CartViewControllerProtocol {
     
     private lazy var summaryInfoView: SummaryInfoView = {
         let view = SummaryInfoView()
+        view.delegate = self
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
+    }()
+    
+    private lazy var emptyLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = NSLocalizedString("Cart is empty", comment: "")
+        label.textColor = .ypBlack
+        label.font = UIFont.bodyBold17
+        label.isHidden = true
+        return label
     }()
     
     private lazy var sortButton = UIBarButtonItem(
@@ -49,11 +59,12 @@ final class CartViewController: UIViewController, CartViewControllerProtocol {
         super.viewDidLoad()
         nftTableView.delegate = self
         nftTableView.dataSource = self
+        presenter = CartPresenter(view: self)
         setNavBar()
         addViews()
         addConstraints()
         presenter?.showNft()
-        presenter = CartPresenter(view: self)
+        checkNftArray()
     }
     
     // MARK: - Methods
@@ -63,6 +74,32 @@ final class CartViewController: UIViewController, CartViewControllerProtocol {
     }
     
     // MARK: - Private Methods
+    
+    private func checkNftArray() {
+        
+        guard let presenter = presenter else { return }
+        
+        if presenter.orders.isEmpty {
+            showEmptyCartPlaceholder()
+        } else {
+            showCart()
+        }
+    }
+    
+    private func showEmptyCartPlaceholder() {
+        emptyLabel.isHidden = false
+        navigationController?.navigationBar.isHidden = true
+        nftTableView.isHidden = true
+        summaryInfoView.isHidden = true
+    }
+    
+    private func showCart() {
+        emptyLabel.isHidden = true
+        navigationController?.navigationBar.isHidden = false
+        nftTableView.isHidden = false
+        summaryInfoView.isHidden = false
+    }
+    
     
     private func setNavBar() {
         navigationItem.rightBarButtonItem = sortButton
@@ -76,6 +113,7 @@ final class CartViewController: UIViewController, CartViewControllerProtocol {
         view.backgroundColor = .ypWhite
         view.addSubview(nftTableView)
         view.addSubview(summaryInfoView)
+        view.addSubview(emptyLabel)
     }
     
     private func addConstraints() {
@@ -87,14 +125,20 @@ final class CartViewController: UIViewController, CartViewControllerProtocol {
             nftTableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             nftTableView.bottomAnchor.constraint(equalTo: summaryInfoView.topAnchor),
             nftTableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
-            nftTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
+            nftTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            
+            emptyLabel.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
+            emptyLabel.centerYAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerYAnchor)
         ])
     }
     
     
     //MARK: objc func
     @objc
-    private func didTapsortButton() { }
+    private func didTapsortButton() {
+        showAlertSort(presenter: presenter as! Sortable, valueSort: .cart)
+        nftTableView.reloadData()
+    }
     
     
 }
@@ -153,5 +197,15 @@ extension CartViewController: DeleteFromCartViewControllerDelegate {
     }
 }
 
+
+// MARK: - SummaryViewDelegate
+
+extension CartViewController: SummaryViewDelegate {
+    func didTapToPayButton() {
+        let checkPayVC = PayViewController()
+        checkPayVC.hidesBottomBarWhenPushed = true
+        navigationController?.pushViewController(checkPayVC, animated: true)
+    }
+}
 
 
