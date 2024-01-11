@@ -57,6 +57,7 @@ struct CartService: CartServiceProtocol {
 //TODO: - Вынести в одлеьный файл 
 enum Constants {
     static let endpoint = URL(string:"https://d5dn3j2ouj72b0ejucbl.apigw.yandexcloud.net")!
+    static let userAgreementUrl = URL(string: "https://yandex.ru/legal/practicum_termsofuse/")!
 }
 
 struct GetOrderRequest: NetworkRequest {

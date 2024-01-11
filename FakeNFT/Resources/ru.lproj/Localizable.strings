@@ -10,3 +10,17 @@
 "Return" = "Вернуться";
 "Price" = "Цена";
 "ToPay" = "К оплате";
+"Cart is empty" = "Корзина пуста";
+"Select payMethod" = "Выберите способ оплаты";
+"Agree purchase" = "Совершая покупку, вы соглашаетесь с условиями";
+"User Agreement" = "Пользовательского соглашения";
+"Pay" = "Оплатить";
+"Success! Payment completed, congratulations on your purchase!" = "Успех! Оплата прошла, поздравляем с покупкой!";
+"Try again" = "Попробовать еще раз";
+"Oops! Something went wrong :( Try again!" = "Упс! Что-то пошло не так :( Попробуйте ещё раз!";
+"Sorting" = "Сортировка";
+"By price" = "По цене";
+"By rating" = "По рейтингу";
+"By name" = "По имени";
+"By NFT name" = "По названию";
+"By NFT count" = "По количеству NFT";

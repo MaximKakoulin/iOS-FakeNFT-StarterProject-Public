@@ -7,6 +7,9 @@
 
 import UIKit
 
+protocol SummaryViewDelegate: AnyObject {
+    func didTapToPayButton()
+}
 
 final class SummaryInfoView: UIView {
     private let countNftLabel: UILabel = {
@@ -45,6 +48,11 @@ final class SummaryInfoView: UIView {
         button.setTitle(text, for: .normal)
         button.titleLabel?.font = .bodyBold17
         button.translatesAutoresizingMaskIntoConstraints = false
+        button.addTarget(
+            self,
+            action: #selector(didTapToPayButton),
+            for: .touchUpInside
+        )
         return button
     }()
     
@@ -62,6 +70,7 @@ final class SummaryInfoView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    weak var delegate: SummaryViewDelegate?
     
     // MARK: - Public Methods
     
@@ -82,6 +91,11 @@ final class SummaryInfoView: UIView {
         
         addConstraints()
         
+    }
+    
+    @objc
+    private func didTapToPayButton() {
+        delegate?.didTapToPayButton()
     }
     
     private func addConstraints() {
