@@ -1,40 +1,36 @@
 import Foundation
 
-typealias NftCompletion = (Result<NFTModel, Error>) -> Void
+ typealias NftCompletion = (Result<Nft, Error>) -> Void
 
-protocol NftServiceProtocol {
-    var networkClient: NetworkClient { get }
-    func getNft(id: String, completion: @escaping NftCompletion)
-}
+ protocol NftService {
+    func loadNft(id: String, completion: @escaping NftCompletion)
+ }
 
-final class NftService: NftServiceProtocol {
+ final class NftServiceImpl: NftService {
 
-    let networkClient: NetworkClient
+    private let networkClient: NetworkClient
+    private let storage: NftStorage
 
-    init(networkClient: NetworkClient = DefaultNetworkClient()) {
+    init(networkClient: NetworkClient, storage: NftStorage) {
+        self.storage = storage
         self.networkClient = networkClient
     }
 
-    func getNft(id nftId: String, completion: @escaping NftCompletion ) {
-        let getRequest = GetNFTRequest(nftId: nftId)
+    func loadNft(id: String, completion: @escaping NftCompletion) {
+        if let nft = storage.getNft(with: id) {
+            completion(.success(nft))
+            return
+        }
 
-        networkClient.send(request: getRequest, type: NFTModel.self) { result in
-            DispatchQueue.main.async {
-                completion(result)
+        let request = NFTRequest()
+        networkClient.send(request: request, type: Nft.self) { [weak storage] result in
+            switch result {
+            case .success(let nft):
+                storage?.saveNft(nft)
+                completion(.success(nft))
+            case .failure(let error):
+                completion(.failure(error))
             }
         }
     }
-}
-
-//TODO: - Вынести в одлеьный файл и добавить ссылку на новй api
-struct GetNFTRequest: NetworkRequest {
-    let nftId: String
-    var endpoint: URL? {
-        URL(string: "https://64c51731c853c26efada7bb6.mockapi.io/api/v1/nft/\(nftId)")
-//        Constants.endpoint.appendingPathComponent("/api/v1/nft/\(NFTID)")
-    }
-    
-    var httpMethod: HttpMethod {.get}
-    
-    
-}
+ }
