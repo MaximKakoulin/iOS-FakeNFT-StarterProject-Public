@@ -4,9 +4,13 @@
 
 https://github.com/MaximKakoulin/iOS-FakeNFT-StarterProject-Public/assets/121349419/0ec84f4e-d8ae-4f8b-81c8-e3f3ed5c0ff5
 
-
+https://github.com/MaximKakoulin/iOS-FakeNFT-StarterProject-Public/assets/74237735/641750ed-f6bb-423c-a36b-e5651cd3fdbe
 
 # Ссылки
+
+
+
+
 
 [Дизайн Figma](https://www.figma.com/file/k1LcgXHGTHIeiCv4XuPbND/FakeNFT-(YP)?node-id=96-5542&t=YdNbOI8EcqdYmDeg-0)
 
