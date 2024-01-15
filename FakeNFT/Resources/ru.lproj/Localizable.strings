@@ -1,3 +1,12 @@
+/* 
+  Localizable.strings
+  FakeNFT
+
+  Created by Мурад Манапов on 12.01.2024.
+  
+*/
+
+//Cart
 "Tab.catalog" = "Каталог";
 "Catalog.openNft" = "Открыть Nft";
 "Error.network" = "Произошла ошибка сети";
@@ -24,3 +33,64 @@
 "By name" = "По имени";
 "By NFT name" = "По названию";
 "By NFT count" = "По количеству NFT";
+
+// OnboardingVC
+"firstHeader" = "Исследуйте";
+"firstDescription" = "Присоединяйтесь и откройте новый мир\nуникальных NFT для коллекционеров";
+"secondHeader" = "Коллекционируйте";
+"secondDescription" = "Пополняйте свою коллекцию эксклюзивными\nкартинками, созданными нейросетью!";
+"thirdHeader" = "Состязайтесь";
+"thirdDescription" = "Смотрите статистику других и покажите всем,\nчто у вас самая ценная коллекция";
+"onboardingButton" = "Что внутри?";
+
+// TabBarController
+"profileTabBarTitle" = "Профиль";
+"catalogTabBarTitle" = "Каталог";
+"cartTabBarTitle" = "Корзина";
+"statisticTabBarTitle" = "Статистика";
+
+// ProfileEditVC
+"avatarLabel" = "Cменить\nфото";
+"nameStackViewLabel" = "Имя";
+"nameStackViewContent" = "Введите Ваше имя";
+"descriptionStackViewLabel" = "Описание";
+"descriptionStackViewContent" = "Введите Ваше описание";
+"websiteStackViewLabel" = "Сайт";
+"websiteStackViewContent" = "Введите Ваш Сайт";
+"profileUpdatedSuccessfully" = "Профиль успешно обновлен";
+"saveButton" = "Сохранить";
+
+// ProfileEditStackView
+"keyboardDoneButton" = "Готово";
+"keyboardResetButton" = "Отменить ввод";
+
+// ProfileButtonsStackView
+"myNFTLabel" = "Мои NFT";
+"favoritesNFTLabel" = "Избранные NFT";
+"aboutDeveloperLabel" = "О разработчике";
+
+// UserProfileStackView
+"userNameLabel" = "Имя Пользователя";
+"userInfoLabel" = "Информация о Вас. Здесь может быть ваши данные или другую информацию.";
+"websiteLabel" = "www.internet.com";
+
+// MyNFTsVC
+"myNFTsNavigationTitle" = "Мои NFT";
+"cellNFTPriceLabel" = "Цена";
+"alertTitleLabel" = "Сортировка";
+"alertPriceLabel" = "По цене";
+"alertRatingLabel" = "По рейтингу";
+"alertNameLabel" = "По названию";
+"alertCloseLabel" = "Закрыть";
+"myNFTsPlaceholder" = "У Вас еще нет NFT";
+"wordFrom" = "От";
+"unknownAuthor" = "Неизвестный автор";
+
+// FavoritesNFTsVC
+"favoritesNFTsNavigationTitle" = "Избранные NFT";
+"favoritesNFTsPlaceholder" = "У Вас еще нет избранных NFT";
+
+// AboutDevelopersVC
+"aboutDevelopersNavigationTitle" = "Команда разработчиков";
+
+

@@ -9,7 +9,7 @@ import UIKit
 import Kingfisher
 
 protocol CartNFTCellDelegate: AnyObject {
-    func didTapDeleteButton(on nft: NFTModel)
+    func didTapDeleteButton(on nft: NFTModelCart)
 }
 
 final class CartViewControllerCell: UITableViewCell {
@@ -17,7 +17,7 @@ final class CartViewControllerCell: UITableViewCell {
     //MARK: - Properties
     
     weak var delegate: CartNFTCellDelegate?
-    private var model: NFTModel?
+    private var model: NFTModelCart?
     
     
     // MARK: - private Properties
@@ -95,7 +95,7 @@ final class CartViewControllerCell: UITableViewCell {
     
     // MARK: - Public Methods
     
-    func configureCell(with model: NFTModel) {
+    func configureCell(with model: NFTModelCart) {
         self.model = model
         guard
             let image = model.images.first,

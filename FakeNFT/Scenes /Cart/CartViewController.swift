@@ -9,6 +9,8 @@ import UIKit
 
 protocol CartViewControllerProtocol: AnyObject {
     func reload()
+    func showEmptyCartPlaceholder()
+    func showCart()
 }
 
 final class CartViewController: UIViewController, CartViewControllerProtocol {
@@ -59,12 +61,9 @@ final class CartViewController: UIViewController, CartViewControllerProtocol {
         super.viewDidLoad()
         nftTableView.delegate = self
         nftTableView.dataSource = self
-        presenter = CartPresenter(view: self)
-        setNavBar()
         addViews()
-        addConstraints()
         presenter?.showNft()
-        checkNftArray()
+        presenter = CartPresenter(view: self)
     }
     
     // MARK: - Methods
@@ -75,45 +74,35 @@ final class CartViewController: UIViewController, CartViewControllerProtocol {
     
     // MARK: - Private Methods
     
-    private func checkNftArray() {
-        
-        guard let presenter = presenter else { return }
-        
-        if presenter.orders.isEmpty {
-            showEmptyCartPlaceholder()
-        } else {
-            showCart()
-        }
-    }
-    
-    private func showEmptyCartPlaceholder() {
+    func showEmptyCartPlaceholder() {
         emptyLabel.isHidden = false
         navigationController?.navigationBar.isHidden = true
         nftTableView.isHidden = true
         summaryInfoView.isHidden = true
     }
     
-    private func showCart() {
+    func showCart() {
         emptyLabel.isHidden = true
         navigationController?.navigationBar.isHidden = false
         nftTableView.isHidden = false
         summaryInfoView.isHidden = false
     }
     
+    private func addViews() {
+        view.backgroundColor = .ypWhite
+        view.addSubview(nftTableView)
+        view.addSubview(summaryInfoView)
+        view.addSubview(emptyLabel)
+        
+        setNavBar()
+        addConstraints()
+    }
     
     private func setNavBar() {
         navigationItem.rightBarButtonItem = sortButton
         navigationController?.navigationBar.tintColor = .ypBlack
         navigationController?.navigationBar.backgroundColor = .ypWhite
         navigationController?.navigationBar.prefersLargeTitles = false
-    }
-    
-    
-    private func addViews() {
-        view.backgroundColor = .ypWhite
-        view.addSubview(nftTableView)
-        view.addSubview(summaryInfoView)
-        view.addSubview(emptyLabel)
     }
     
     private func addConstraints() {
@@ -173,7 +162,7 @@ extension CartViewController: UITableViewDelegate {
 // MARK: - CartNFTCellDelegate
 
 extension CartViewController: CartNFTCellDelegate {
-    func didTapDeleteButton(on nft: NFTModel) {
+    func didTapDeleteButton(on nft: NFTModelCart) {
         let deleteFromCartVC = DeleteFromCartViewController()
         deleteFromCartVC.nftForDelete = nft
         deleteFromCartVC.delegate = self
@@ -190,7 +179,7 @@ extension CartViewController: DeleteFromCartViewControllerDelegate {
         dismiss(animated: true)
     }
     
-    func didTapDeleteButton(_ model: NFTModel) {
+    func didTapDeleteButton(_ model: NFTModelCart) {
         presenter?.deleteNft(model) { [weak self] in
             self?.dismiss(animated: true)
         }

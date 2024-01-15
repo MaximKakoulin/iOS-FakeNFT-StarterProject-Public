@@ -61,10 +61,15 @@ enum Constants {
 }
 
 struct GetOrderRequest: NetworkRequest {
+    
     var endpoint: URL? {
-        URL(string: "https://64c51731c853c26efada7bb6.mockapi.io/api/v1/orders/1")
+        URL(string: "https://64858e8ba795d24810b71189.mockapi.io/api/v1/orders/1")
 //        Constants.endpoint.appendingPathComponent("/api/v1/orders/1")
+
     }
+//    var endpoint: URL? {
+//        URL(string: "\(RequestConstants.baseURL)/api/v1/orders/\("2")")
+//    }
     
     var httpMethod: HttpMethod { .get }
     
@@ -73,7 +78,7 @@ struct GetOrderRequest: NetworkRequest {
 
 struct PutOrderRequest: NetworkRequest {
     var endpoint: URL? {
-        URL(string: "https://64c51731c853c26efada7bb6.mockapi.io/api/v1/orders/1")
+        URL(string: "https://64858e8ba795d24810b71189.mockapi.io/api/v1/orders/1")
 //        Constants.endpoint.appendingPathComponent("/api/v1/orders/1")
     }
     

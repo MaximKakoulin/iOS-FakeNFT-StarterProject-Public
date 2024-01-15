@@ -8,7 +8,7 @@
 import Foundation
 
 
-struct NFTModel: Codable {
+struct NFTModelCart: Codable {
     let createdAt: String
     let name: String
     let images: [String]

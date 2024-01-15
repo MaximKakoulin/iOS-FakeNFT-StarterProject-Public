@@ -104,10 +104,11 @@ final class SummaryInfoView: UIView {
             labelStack.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
             labelStack.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -16),
             
-            toPayButton.topAnchor.constraint(equalTo: topAnchor, constant: 16),
+//            toPayButton.topAnchor.constraint(equalTo: topAnchor, constant: 16),
             toPayButton.leadingAnchor.constraint(equalTo: labelStack.trailingAnchor, constant: 24),
             toPayButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
-            toPayButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -16),
+//            toPayButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -16),
+            toPayButton.centerYAnchor.constraint(equalTo: labelStack.centerYAnchor),
             toPayButton.heightAnchor.constraint(equalToConstant: 44)
         ])
     }

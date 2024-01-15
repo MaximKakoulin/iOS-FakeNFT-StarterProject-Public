@@ -10,12 +10,13 @@ import Foundation
 // MARK: - Protocol
 
 protocol CartPresenterProtocol: AnyObject {
-    var nftArray: [NFTModel] { get }
+    var nftArray: [NFTModelCart] { get }
     var isLoad: Bool { get }
     var summaryInfo: SummaryInfo { get }
     var orders: [String] { get }
     func showNft()
-    func deleteNft(_ nft: NFTModel, completion: @escaping () -> Void) }
+    func checkNftArray()
+    func deleteNft(_ nft: NFTModelCart, completion: @escaping () -> Void) }
 
 protocol Sortable {
     func sort(param: Sort)
@@ -25,7 +26,7 @@ final class CartPresenter: CartPresenterProtocol {
     
     //MARK: - Propertirs
     
-    var nftArray: [NFTModel] = []
+    var nftArray: [NFTModelCart] = []
     var orders: [String] = [] {
         didSet {
             self.nftArray = []
@@ -80,6 +81,7 @@ final class CartPresenter: CartPresenterProtocol {
                     self.isLoad = false
                     print(error.localizedDescription)
                 }
+                self.checkNftArray()
                 self.view?.reload()
             }
         }
@@ -101,6 +103,7 @@ final class CartPresenter: CartPresenterProtocol {
                             self.isLoad = false
                             print(error.localizedDescription)
                         }
+                        self.checkNftArray()
                         self.view?.reload()
                     }
                 }
@@ -109,7 +112,7 @@ final class CartPresenter: CartPresenterProtocol {
         }
     }
     
-    func deleteNft(_ nft: NFTModel, completion: @escaping () -> Void) {
+    func deleteNft(_ nft: NFTModelCart, completion: @escaping () -> Void) {
         isLoad = true
         let updatedOrder = orders.filter { $0 != nft.id }
         cartService.updateOrder(updatedOrder: updatedOrder) { [weak self] result in
@@ -127,7 +130,19 @@ final class CartPresenter: CartPresenterProtocol {
         }
         isLoad = false
     }  
+    
+    
+    func checkNftArray() {
+        print(orders)
+        if orders.isEmpty {
+            view?.showEmptyCartPlaceholder()
+        } else {
+            view?.showCart()
+        }
+    }
 }
+
+
 
 
 // MARK: - Sortable
@@ -138,10 +153,13 @@ extension CartPresenter: Sortable {
         switch param {
             case .price:
                 nftArray = nftArray.sorted(by: {$0.price > $1.price} )
+                view?.reload()
             case .rating:
                 nftArray = nftArray.sorted(by: {$0.rating > $1.rating} )
+                view?.reload()
             case .NFTName:
                 nftArray = nftArray.sorted(by: {$0.name < $1.name} )
+                view?.reload()
             case .NFTCount:
                 break
             case .name:

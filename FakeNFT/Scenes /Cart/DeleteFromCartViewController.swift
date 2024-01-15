@@ -11,13 +11,13 @@ import Kingfisher
 
 protocol DeleteFromCartViewControllerDelegate: AnyObject {
     func didTapReturnButton()
-    func didTapDeleteButton(_ model: NFTModel)
+    func didTapDeleteButton(_ model: NFTModelCart)
 }
 
 final class DeleteFromCartViewController: UIViewController {
     // MARK: - Properties
     
-    var nftForDelete: NFTModel?
+    var nftForDelete: NFTModelCart?
     weak var delegate: DeleteFromCartViewControllerDelegate?
     
     

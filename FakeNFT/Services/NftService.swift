@@ -1,11 +1,13 @@
 import Foundation
 
-typealias NftCompletion = (Result<NFTModel, Error>) -> Void
+
+typealias NftCompletion = (Result<NFTModelCart, Error>) -> Void
 
 protocol NftServiceProtocol {
     var networkClient: NetworkClient { get }
     func getNft(id: String, completion: @escaping NftCompletion)
 }
+
 
 final class NftService: NftServiceProtocol {
 
@@ -18,7 +20,8 @@ final class NftService: NftServiceProtocol {
     func getNft(id nftId: String, completion: @escaping NftCompletion ) {
         let getRequest = GetNFTRequest(nftId: nftId)
 
-        networkClient.send(request: getRequest, type: NFTModel.self) { result in
+
+        networkClient.send(request: getRequest, type: NFTModelCart.self) { result in
             DispatchQueue.main.async {
                 completion(result)
             }
@@ -26,15 +29,18 @@ final class NftService: NftServiceProtocol {
     }
 }
 
-//TODO: - Вынести в одлеьный файл и добавить ссылку на новй api
+
 struct GetNFTRequest: NetworkRequest {
     let nftId: String
+    
     var endpoint: URL? {
-        URL(string: "https://64c51731c853c26efada7bb6.mockapi.io/api/v1/nft/\(nftId)")
-//        Constants.endpoint.appendingPathComponent("/api/v1/nft/\(NFTID)")
+        URL(string: "https://64858e8ba795d24810b71189.mockapi.io/api/v1/nft/\(nftId)")
     }
+
     
     var httpMethod: HttpMethod {.get}
     
     
 }
+
+
