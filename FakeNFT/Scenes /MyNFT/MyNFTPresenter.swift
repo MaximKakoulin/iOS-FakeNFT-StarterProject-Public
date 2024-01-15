@@ -18,7 +18,7 @@ final class MyNFTsPresenter {
     weak var view: MyNFTsViewProtocol?
     private let profileService: ProfileServiceProtocol
 
-    var nftModels: [NFTModel] = []
+    var nftModels: [NFTModelProfile] = []
     var nftIds: [String]
     var likedNFTIds: [String]
 

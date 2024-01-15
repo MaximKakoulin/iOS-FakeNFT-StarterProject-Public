@@ -157,7 +157,7 @@ final class NFTTableViewCell: UITableViewCell {
         }
     }
 
-    func configure(with nft: NFTModel) {
+    func configure(with nft: NFTModelProfile) {
         self.NFTId = nft.id
 
         titleLabel.text = nft.name

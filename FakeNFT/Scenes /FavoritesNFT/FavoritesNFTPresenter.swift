@@ -13,7 +13,7 @@ final class FavoritesNFTPresenter {
     private let profileService: ProfileServiceProtocol
 
     private var likedNFTIds: [String]
-    var likedNFTs: [NFTModel] = []
+    var likedNFTs: [NFTModelProfile] = []
 
     init(likedNFTIds: [String], profileService: ProfileServiceProtocol) {
         self.likedNFTIds = likedNFTIds
@@ -39,7 +39,7 @@ final class FavoritesNFTPresenter {
         }
     }
 
-    func toggleLikeStatus(for nft: NFTModel) {
+    func toggleLikeStatus(for nft: NFTModelProfile) {
         if let index = likedNFTIds.firstIndex(of: nft.id) {
             likedNFTIds.remove(at: index)
             likedNFTs.removeAll { $0.id == nft.id}

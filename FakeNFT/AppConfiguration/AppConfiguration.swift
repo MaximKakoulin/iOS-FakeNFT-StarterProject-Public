@@ -23,7 +23,7 @@ class AppConfiguration {
         profilePresenter.view = profileViewController as? ProfileViewProtocol
 
         catalogViewController = UIViewController()
-        cartViewController = UIViewController()
+        cartViewController = CartViewController()
         statisticViewController = UIViewController()
     }
 }

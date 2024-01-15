@@ -113,7 +113,7 @@ final class FavoritesNFTCVCell: UICollectionViewCell {
         likeButton.setImage(UIImage(named: imageName), for: .normal)
     }
 
-    func configure(with nft: NFTModel) {
+    func configure(with nft: NFTModelProfile) {
         nameLabel.text = nft.name
         ratingView.configureRating(nft.rating)
 

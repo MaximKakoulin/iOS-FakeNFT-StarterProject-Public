@@ -8,7 +8,7 @@
 import UIKit
 
 protocol FavoritesNFTView: AnyObject {
-    func updateNFTs(_ nfts: [NFTModel])
+    func updateNFTs(_ nfts: [NFTModelProfile])
     func showError(_ error: Error)
 }
 
@@ -65,7 +65,7 @@ final class FavoritesNFTViewController: UIViewController {
     }()
 
     private var presenter: FavoritesNFTPresenter?
-    private var likedNFTs: [NFTModel] = []
+    private var likedNFTs: [NFTModelProfile] = []
     private var likedNFTIds: [String]
 
     init(likedNFTIds: [String]) {
@@ -158,7 +158,7 @@ extension FavoritesNFTViewController: UICollectionViewDataSource, UICollectionVi
 }
 
 extension FavoritesNFTViewController: FavoritesNFTView {
-    func updateNFTs(_ nfts: [NFTModel]) {
+    func updateNFTs(_ nfts: [NFTModelProfile]) {
         self.likedNFTs = nfts
 
         DispatchQueue.main.async {

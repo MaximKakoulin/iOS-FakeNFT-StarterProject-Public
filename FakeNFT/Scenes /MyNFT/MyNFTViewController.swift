@@ -8,7 +8,7 @@
 import UIKit
 
 protocol MyNFTsViewProtocol: AnyObject {
-    func updateWith(nfts: [NFTModel])
+    func updateWith(nfts: [NFTModelProfile])
     func showError(_ error: Error)
 }
 
@@ -29,7 +29,7 @@ final class MyNFTsViewController: UIViewController {
 
     private var tableView: UITableView!
     private var presenter: MyNFTsPresenter?
-    private var nftModels: [NFTModel] = []
+    private var nftModels: [NFTModelProfile] = []
     private var nftIds: [String]
     private var likedNFTIds: [String]
 
@@ -136,7 +136,7 @@ extension MyNFTsViewController: MyNFTsViewProtocol {
         presenter?.viewDidLoad()
     }
 
-    func updateWith(nfts: [NFTModel]) {
+    func updateWith(nfts: [NFTModelProfile]) {
         self.nftModels = nfts
         DispatchQueue.main.async {
             if self.nftModels.isEmpty {

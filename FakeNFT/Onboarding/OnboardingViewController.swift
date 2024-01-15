@@ -48,7 +48,7 @@ final class OnboardingViewController: UIPageViewController {
         button.backgroundColor = .blackUni
         button.layer.cornerRadius = 16
         button.setTitleColor(.whiteUni, for: .normal)
-        button.titleLabel?.font = .bodyBold
+        button.titleLabel?.font = .bodyBold17
         button.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button

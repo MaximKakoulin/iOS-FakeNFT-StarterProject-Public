@@ -16,7 +16,7 @@ protocol ProfileUpdatingProtocol {
 }
 
 protocol NFTFetchingProtocol {
-    func fetchNFTs(completion: @escaping (Result<[NFTModel], Error>) -> Void)
+    func fetchNFTs(completion: @escaping (Result<[NFTModelProfile], Error>) -> Void)
 }
 
 protocol UserDetailProtocol {
@@ -55,9 +55,9 @@ extension ProfileService: ProfileServiceProtocol {
 }
 
 extension ProfileService: NFTFetchingProtocol {
-    func fetchNFTs(completion: @escaping (Result<[NFTModel], Error>) -> Void) {
+    func fetchNFTs(completion: @escaping (Result<[NFTModelProfile], Error>) -> Void) {
         let request = NFTRequest()
-        networkClient.send(request: request, type: [NFTModel].self, onResponse: completion)
+        networkClient.send(request: request, type: [NFTModelProfile].self, onResponse: completion)
     }
 
 }

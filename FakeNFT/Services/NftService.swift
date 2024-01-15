@@ -1,36 +1,46 @@
 import Foundation
 
- typealias NftCompletion = (Result<Nft, Error>) -> Void
 
- protocol NftService {
-    func loadNft(id: String, completion: @escaping NftCompletion)
- }
+typealias NftCompletion = (Result<NFTModelCart, Error>) -> Void
 
- final class NftServiceImpl: NftService {
+protocol NftServiceProtocol {
+    var networkClient: NetworkClient { get }
+    func getNft(id: String, completion: @escaping NftCompletion)
+}
 
-    private let networkClient: NetworkClient
-    private let storage: NftStorage
 
-    init(networkClient: NetworkClient, storage: NftStorage) {
-        self.storage = storage
+final class NftService: NftServiceProtocol {
+
+    let networkClient: NetworkClient
+
+    init(networkClient: NetworkClient = DefaultNetworkClient()) {
         self.networkClient = networkClient
     }
 
-    func loadNft(id: String, completion: @escaping NftCompletion) {
-        if let nft = storage.getNft(with: id) {
-            completion(.success(nft))
-            return
-        }
+    func getNft(id nftId: String, completion: @escaping NftCompletion ) {
+        let getRequest = GetNFTRequest(nftId: nftId)
 
-        let request = NFTRequest()
-        networkClient.send(request: request, type: Nft.self) { [weak storage] result in
-            switch result {
-            case .success(let nft):
-                storage?.saveNft(nft)
-                completion(.success(nft))
-            case .failure(let error):
-                completion(.failure(error))
+
+        networkClient.send(request: getRequest, type: NFTModelCart.self) { result in
+            DispatchQueue.main.async {
+                completion(result)
             }
         }
     }
- }
+}
+
+
+struct GetNFTRequest: NetworkRequest {
+    let nftId: String
+    
+    var endpoint: URL? {
+        URL(string: "https://64858e8ba795d24810b71189.mockapi.io/api/v1/nft/\(nftId)")
+    }
+
+    
+    var httpMethod: HttpMethod {.get}
+    
+    
+}
+
+

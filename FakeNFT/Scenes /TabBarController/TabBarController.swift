@@ -4,6 +4,7 @@ class TabBarController: UITabBarController {
 
     let appConfiguration: AppConfiguration
 
+
     init(appConfiguration: AppConfiguration) {
         self.appConfiguration = appConfiguration
         super.init(nibName: nil, bundle: nil)
@@ -16,6 +17,13 @@ class TabBarController: UITabBarController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        UITabBar.appearance().barTintColor = .systemBackground
+        view.backgroundColor = .systemBackground
+        
+        setupTabBarItems()
+    }
+    
+    private func setupTabBarItems() {
         let profileNavigationController = UINavigationController(
             rootViewController: appConfiguration.profileViewController)
         profileNavigationController.tabBarItem = UITabBarItem(
@@ -29,11 +37,16 @@ class TabBarController: UITabBarController {
             image: UIImage(systemName: "rectangle.stack.fill"),
             selectedImage: nil
         )
-        appConfiguration.cartViewController.tabBarItem = UITabBarItem(
+        
+        let cartViewController = UINavigationController(
+            rootViewController: appConfiguration.cartViewController)
+        cartViewController.tabBarItem = UITabBarItem(
             title: TextLabels.TabBarController.cartTabBarTitle,
             image: UIImage(systemName: "bag.fill"),
             selectedImage: nil
         )
+        cartViewController.navigationBar.prefersLargeTitles = true
+        
         appConfiguration.statisticViewController.tabBarItem = UITabBarItem(
             title: TextLabels.TabBarController.statisticTabBarTitle,
             image: UIImage(systemName: "flag.2.crossed.fill"),
@@ -43,13 +56,14 @@ class TabBarController: UITabBarController {
         self.viewControllers = [
             profileNavigationController,
             appConfiguration.catalogViewController,
-            appConfiguration.cartViewController,
+            cartViewController,
             appConfiguration.statisticViewController
         ]
 
         tabBar.isTranslucent = false
         view.tintColor = .systemBlue
-        tabBar.backgroundColor = .white
+        tabBar.backgroundColor = .ypRed
+        tabBar.unselectedItemTintColor = .ypBlack
 
         if #available(iOS 15.0, *) {
             let appearance = UITabBarAppearance()
